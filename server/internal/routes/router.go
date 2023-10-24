@@ -15,3 +15,19 @@ func Home(c echo.Context) error {
         return c.JSON(http.StatusOK, recipes)    
     }
 }
+
+func PostRecipe(c echo.Context) error {
+    recipe := new(models.Recipe) 
+
+    if err := c.Bind(recipe); err != nil {
+        return err
+    }
+
+    err := models.CreateRecipe(recipe)
+
+    if err != nil {
+        return err
+    }
+    
+    return c.JSON(http.StatusCreated, recipe)
+}

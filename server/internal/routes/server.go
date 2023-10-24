@@ -11,7 +11,9 @@ func Start() {
 
     e.Use(middleware.CORS())
     
-    e.GET("/api/recipes", Home) 
+    e.GET("/api/recipes", Home)
+
+    e.POST("/api/recipes", PostRecipe)
 
     e.Logger.Fatal(e.Start(":4000"))
 }

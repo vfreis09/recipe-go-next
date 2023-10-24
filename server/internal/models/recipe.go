@@ -44,6 +44,15 @@ func GetAllRecipes() ([]Recipe, error) {
     return recipes, nil
 }
 
-//func CreateRecipe(recipe Recipe) error {
-    //query := `INSERT INTO recipes(title, ingredients, description) VALUES($1, $2, $3);`
-//}
+//Not working too lole
+func CreateRecipe(recipe *Recipe) error {
+    query := `INSERT INTO recipes(title, ingredients, description) VALUES($1, $2, $3);`
+
+    _, err := db.Exec(query, recipe.Title, recipe.Ingredients, recipe.Description)
+
+    if err != nil {
+        return err
+    }
+
+    return nil
+}
