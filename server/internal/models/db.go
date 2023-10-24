@@ -20,7 +20,7 @@ func Init() {
     
     connStr := os.Getenv("DB_STRING")
 
-    db, err := sql.Open("postgres", connStr)
+    db, err = sql.Open("postgres", connStr)
 
     if err != nil {
         log.Fatal(err)
@@ -29,7 +29,7 @@ func Init() {
     }
     
     query := `CREATE TABLE IF NOT EXISTS recipes(
-        ID INT UNIQUE NOT NULL, 
+        ID SERIAL UNIQUE NOT NULL, 
         title VARCHAR(64) NOT NULL, 
         ingredients TEXT NOT NULL,
         description TEXT NOT NULL,
