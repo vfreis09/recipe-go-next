@@ -4,14 +4,14 @@ type Recipe struct {
     ID uint64 `json:"id"`
     Title string `json:"title"`
     Ingredients string `json:"ingredients"`
-    Description string `json:"description"`
+    Instructions string `json:"instructions"`
 }
 
 //Not working
 func GetAllRecipes() ([]Recipe, error) {
     var recipes []Recipe
     
-    query := `SELECT id, title, ingredients, description FROM recipes`
+    query := `SELECT id, title, ingredients, instructions FROM recipes`
 
     rows, err := db.Query(query)
 
@@ -23,9 +23,9 @@ func GetAllRecipes() ([]Recipe, error) {
 
     for rows.Next() {
         var id uint64
-        var title, ingredients, description string
+        var title, ingredients, instructions string
 
-        err := rows.Scan(&id, &title, &ingredients, &description)
+        err := rows.Scan(&id, &title, &ingredients, &instructions)
 
         if err != nil {
             return recipes, err 
@@ -35,7 +35,7 @@ func GetAllRecipes() ([]Recipe, error) {
             ID: id,
             Title: title,
             Ingredients: ingredients,
-            Description: description,
+            Instructions: instructions,
         }
 
         recipes = append(recipes, recipe)
@@ -46,9 +46,9 @@ func GetAllRecipes() ([]Recipe, error) {
 
 //Not working too lole
 func CreateRecipe(recipe *Recipe) error {
-    query := `INSERT INTO recipes(title, ingredients, description) VALUES($1, $2, $3);`
+    query := `INSERT INTO recipes(title, ingredients, instructions) VALUES($1, $2, $3);`
 
-    _, err := db.Exec(query, recipe.Title, recipe.Ingredients, recipe.Description)
+    _, err := db.Exec(query, recipe.Title, recipe.Ingredients, recipe.Instructions)
 
     if err != nil {
         return err

@@ -32,7 +32,7 @@ func Init() {
         ID SERIAL UNIQUE NOT NULL, 
         title VARCHAR(64) NOT NULL, 
         ingredients TEXT NOT NULL,
-        description TEXT NOT NULL,
+        instructions TEXT NOT NULL,
         PRIMARY KEY (ID));`
 
     _, err = db.Exec(query)
