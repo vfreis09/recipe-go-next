@@ -1,7 +1,9 @@
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Header from "@/components/Header";
+import Recipe from "@/components/Recipe";
 
 interface RecipeData {
+  id: number;
   title: string;
   ingredients: string;
   instructions: string;
@@ -19,10 +21,14 @@ export const getServerSideProps = (async () => {
 export default function Home({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const recipes = data.map((recipe: RecipeData) => {
+    return <Recipe key={recipe.id} {...recipe} />;
+  });
+
   return (
     <div>
       <Header />
-      <h1>{data.name}</h1>
+      {recipes}
     </div>
   );
 }
