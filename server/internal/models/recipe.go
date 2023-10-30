@@ -1,13 +1,12 @@
 package models
 
 type Recipe struct {
-    ID uint64 `json:"id"`
+    ID int `json:"id"`
     Title string `json:"title"`
     Ingredients string `json:"ingredients"`
     Instructions string `json:"instructions"`
 }
 
-//Not working
 func GetAllRecipes() ([]Recipe, error) {
     var recipes []Recipe
     
@@ -22,7 +21,7 @@ func GetAllRecipes() ([]Recipe, error) {
     defer rows.Close() 
 
     for rows.Next() {
-        var id uint64
+        var id int
         var title, ingredients, instructions string
 
         err := rows.Scan(&id, &title, &ingredients, &instructions)
@@ -44,7 +43,6 @@ func GetAllRecipes() ([]Recipe, error) {
     return recipes, nil
 }
 
-//Not working too lole
 func CreateRecipe(recipe *Recipe) error {
     query := `INSERT INTO recipes(title, ingredients, instructions) VALUES($1, $2, $3);`
 
@@ -54,5 +52,16 @@ func CreateRecipe(recipe *Recipe) error {
         return err
     }
 
+    return nil
+}
+
+func DeleteRecipe(id int) error {
+    query := `DELETE FROM recipes WHERE id=$1;`
+
+    _, err := db.Exec(query, id)
+
+    if err != nil {
+        return err
+    }
     return nil
 }

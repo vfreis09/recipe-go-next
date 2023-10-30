@@ -21,6 +21,7 @@ export const getServerSideProps = (async () => {
 export default function Home({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  //Loop on the recipe api and send it to the recipe component as props
   const recipes = data.map((recipe: RecipeData) => {
     return <Recipe key={recipe.id} {...recipe} />;
   });
