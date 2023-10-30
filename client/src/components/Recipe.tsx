@@ -4,10 +4,12 @@ interface RecipeData {
   ingredients: string;
   instructions: string;
 }
-
+//Need to update the page when a recipe is deleted and make the page work when theres no recipes
 export default function Recipe(props: RecipeData) {
   function deleteRecipe() {
-    console.log("deleted");
+    fetch(`http://localhost:4000/api/recipes/${props.id}`, {
+      method: "DELETE",
+    });
   }
 
   return (
