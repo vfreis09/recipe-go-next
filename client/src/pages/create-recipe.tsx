@@ -1,30 +1,30 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import Header from "@/components/Header";
 
-interface RecipeData {
+interface Recipe {
   title: string;
   ingredients: string;
   instructions: string;
 }
 
 const RecipeForm: React.FC = () => {
-  const [recipeData, setRecipeData] = useState<RecipeData>({
+  const [recipe, setRecipe] = useState<Recipe>({
     title: "",
     ingredients: "",
     instructions: "",
   });
 
-  const handleInputChange = (
+  const updateRecipe = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setRecipeData({
-      ...recipeData,
+    setRecipe({
+      ...recipe,
       [name]: value,
     });
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const submitRecipe = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
@@ -33,14 +33,14 @@ const RecipeForm: React.FC = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(recipeData),
+        body: JSON.stringify(recipe),
       });
 
       if (response.ok) {
         const responseData = await response.json();
         console.log("API Response:", responseData);
         // You can also reset the form or perform other actions after a successful submission
-        setRecipeData({
+        setRecipe({
           title: "",
           ingredients: "",
           instructions: "",
@@ -56,15 +56,15 @@ const RecipeForm: React.FC = () => {
   return (
     <div>
       <Header />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitRecipe}>
         <div>
           <label htmlFor="title">Title:</label>
           <input
             type="text"
             id="title"
             name="title"
-            value={recipeData.title}
-            onChange={handleInputChange}
+            value={recipe.title}
+            onChange={updateRecipe}
           />
         </div>
         <div>
@@ -72,8 +72,8 @@ const RecipeForm: React.FC = () => {
           <textarea
             id="ingredients"
             name="ingredients"
-            value={recipeData.ingredients}
-            onChange={handleInputChange}
+            value={recipe.ingredients}
+            onChange={updateRecipe}
           />
         </div>
         <div>
@@ -81,8 +81,8 @@ const RecipeForm: React.FC = () => {
           <textarea
             id="instructions"
             name="instructions"
-            value={recipeData.instructions}
-            onChange={handleInputChange}
+            value={recipe.instructions}
+            onChange={updateRecipe}
           />
         </div>
         <button type="submit">Submit Recipe</button>
