@@ -39,7 +39,7 @@ const RecipeForm: React.FC = () => {
       if (response.ok) {
         const responseData = await response.json();
         console.log("API Response:", responseData);
-        // You can also reset the form or perform other actions after a successful submission
+        // reset the form after a successful submission
         setRecipe({
           title: "",
           ingredients: "",

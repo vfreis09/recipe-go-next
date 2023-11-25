@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Header from "@/components/Header";
 import Recipe from "@/components/Recipe";
@@ -9,7 +10,7 @@ interface RecipeData {
   instructions: string;
 }
 
-//fetch data from database
+//Fetch data from database
 export const getServerSideProps = (async () => {
   const res = await fetch("http://localhost:4000/api/recipes");
   const data = await res.json();
@@ -21,6 +22,8 @@ export const getServerSideProps = (async () => {
 export default function Home({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const [dataRecipes, setDataRecipes] = useState<RecipeData[]>(data);
+
   const deleteRecipe = async (id: number) => {
     try {
       const response = await fetch(`http://localhost:4000/api/recipes/${id}`, {
@@ -28,17 +31,22 @@ export default function Home({
       });
 
       if (response.ok) {
-        // Recipe was successfully deleted, you can update your state or perform any other actions
+        //Update state
+        const updatedRecipes = dataRecipes.filter(
+          (myRecipe) => myRecipe.id !== id
+        );
+
+        setDataRecipes(updatedRecipes);
       } else {
-        // Handle error if the deletion was not successful
+        console.error("API Error:", response.status);
       }
     } catch (error) {
       console.error("Error deleting recipe:", error);
     }
   };
-
+  console.log(dataRecipes);
   //Loop on the recipe api and send it to the recipe component as props
-  const recipes = data.map((recipe: RecipeData) => {
+  const recipes = dataRecipes.map((recipe: RecipeData) => {
     return <Recipe key={recipe.id} onDelete={deleteRecipe} {...recipe} />;
   });
 
