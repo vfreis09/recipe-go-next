@@ -13,6 +13,8 @@ func Start() {
     
     e.GET("/api/recipes", Home)
 
+    e.GET("/api/recipes/:id", GetRecipe)
+
     e.POST("/api/recipes", PostRecipe)
 
     e.DELETE("/api/recipes/:id", DelRecipe)

@@ -43,6 +43,38 @@ func GetAllRecipes() ([]Recipe, error) {
     return recipes, nil
 }
 
+func GetRecipeByID(id int) (Recipe, error) {
+    var recipe Recipe 
+
+    query := `SELECT title, ingredients, instructions FROM recipes WHERE id=$1;`
+
+    row, err := db.Query(query, id)
+
+    if err != nil {
+        return recipe, err
+    }
+
+    defer row.Close()
+
+    if row.Next() {
+        var title, ingredients, instructions string
+
+        err := row.Scan(&title, &ingredients, &instructions)
+        if err != nil {
+            return recipe, err
+        }
+
+        recipe = Recipe {
+            ID: id,
+            Title: title,
+            Ingredients: ingredients,
+            Instructions: instructions,
+        }
+    }
+
+    return recipe, nil
+}
+
 func CreateRecipe(recipe *Recipe) error {
     query := `INSERT INTO recipes(title, ingredients, instructions) VALUES($1, $2, $3);`
 

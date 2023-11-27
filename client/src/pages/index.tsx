@@ -44,7 +44,6 @@ export default function Home({
       console.error("Error deleting recipe:", error);
     }
   };
-  console.log(dataRecipes);
   //Loop on the recipe api and send it to the recipe component as props
   const recipes = dataRecipes.map((recipe: RecipeData) => {
     return <Recipe key={recipe.id} onDelete={deleteRecipe} {...recipe} />;

@@ -6,7 +6,6 @@ interface RecipeProp {
   onDelete: (id: number) => void;
 }
 
-//Need to update the page when a recipe is deleted and make the page work when theres no recipes
 export default function Recipe(props: RecipeProp) {
   const handleDeleteClick = (id: number) => {
     // Call the deleteRecipe function and pass the id to delete the recipe
