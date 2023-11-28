@@ -48,7 +48,7 @@ func PostRecipe(c echo.Context) error {
     return c.JSON(http.StatusCreated, recipe)
 }
 
-func updateHandler(c echo.Context) error {
+func UpdateHandler(c echo.Context) error {
     var recipe models.Recipe
     if err := c.Bind(&recipe); err != nil {
         return err

@@ -17,7 +17,7 @@ func Start() {
 
     e.POST("/api/recipes", PostRecipe)
 
-    e.PUT("/update/:id", updateHandler)
+    e.PUT("/api/recipes/:id", UpdateHandler)
 
     e.DELETE("/api/recipes/:id", DelRecipe)
 

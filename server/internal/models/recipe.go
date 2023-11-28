@@ -88,7 +88,7 @@ func CreateRecipe(recipe *Recipe) error {
 }
 
 func UpdateRecipe (recipe Recipe, id int) error {
-    query := `UPDATE recipes SET title$1, ingredients$2, instructions$3 WHERE id$4`
+    query := `UPDATE recipes SET title=$1, ingredients=$2, instructions=$3 WHERE id=$4`
 
     _, err := db.Exec(query, recipe.Title, recipe.Ingredients, recipe.Instructions, id)
     if err != nil {
