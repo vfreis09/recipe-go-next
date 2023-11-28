@@ -48,6 +48,24 @@ func PostRecipe(c echo.Context) error {
     return c.JSON(http.StatusCreated, recipe)
 }
 
+func updateHandler(c echo.Context) error {
+    var recipe models.Recipe
+    if err := c.Bind(&recipe); err != nil {
+        return err
+    }
+
+    id, err := strconv.Atoi(c.Param("id"))
+
+    if err != nil {
+        return c.String(http.StatusBadRequest, "Invalid ID")
+    }
+    err = models.UpdateRecipe(recipe, id)
+    if err != nil {
+        return err
+    }
+    return c.JSON(http.StatusOK, "Status OK")
+}
+
 func DelRecipe(c echo.Context) error {
     id, err := strconv.Atoi(c.Param("id"))
 
