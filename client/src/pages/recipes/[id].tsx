@@ -1,12 +1,6 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import Header from "@/components/Header";
 import Recipe from "@/components/Recipe";
-
-interface RecipeData {
-  id: number;
-  title: string;
-  ingredients: string;
-  instructions: string;
-}
 
 interface Props {
   data?: any;
@@ -31,10 +25,8 @@ export default function GetRecipeById({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div>
-      <h1>{data.title}</h1>
-      <p>{data.ingredients}</p>
-      <p>{data.instructions}</p>
-      <p>{id}</p>
+      <Header />
+      <Recipe key={id} onDelete={data.deleteRecipe} {...data} />
     </div>
   );
 }
