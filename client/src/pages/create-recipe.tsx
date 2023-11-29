@@ -67,6 +67,7 @@ const RecipeForm: React.FC = () => {
             onChange={updateRecipe}
           />
         </div>
+        <input type="file" id="fileInput" accept="image/*" />
         <div>
           <label htmlFor="ingredients">Ingredients:</label>
           <textarea

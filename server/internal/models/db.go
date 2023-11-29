@@ -33,6 +33,7 @@ func Init() {
         title VARCHAR(64) NOT NULL, 
         ingredients TEXT NOT NULL,
         instructions TEXT NOT NULL,
+        image BYTEA,
         PRIMARY KEY (ID));`
 
     _, err = db.Exec(query)

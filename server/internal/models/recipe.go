@@ -5,12 +5,13 @@ type Recipe struct {
     Title string `json:"title"`
     Ingredients string `json:"ingredients"`
     Instructions string `json:"instructions"`
+    Image string `json:"image"`
 }
 
 func GetAllRecipes() ([]Recipe, error) {
     var recipes []Recipe
     
-    query := `SELECT id, title, ingredients, instructions FROM recipes`
+    query := `SELECT id, title, ingredients, instructions, image FROM recipes`
 
     rows, err := db.Query(query)
 
@@ -22,9 +23,9 @@ func GetAllRecipes() ([]Recipe, error) {
 
     for rows.Next() {
         var id int
-        var title, ingredients, instructions string
+        var title, ingredients, instructions, image string
 
-        err := rows.Scan(&id, &title, &ingredients, &instructions)
+        err := rows.Scan(&id, &title, &ingredients, &instructions, &image)
 
         if err != nil {
             return recipes, err 
@@ -35,6 +36,7 @@ func GetAllRecipes() ([]Recipe, error) {
             Title: title,
             Ingredients: ingredients,
             Instructions: instructions,
+            Image: image,
         }
 
         recipes = append(recipes, recipe)
@@ -46,7 +48,7 @@ func GetAllRecipes() ([]Recipe, error) {
 func GetRecipeByID(id int) (Recipe, error) {
     var recipe Recipe 
 
-    query := `SELECT title, ingredients, instructions FROM recipes WHERE id=$1;`
+    query := `SELECT title, ingredients, instructions, image FROM recipes WHERE id=$1;`
 
     row, err := db.Query(query, id)
 
@@ -57,9 +59,9 @@ func GetRecipeByID(id int) (Recipe, error) {
     defer row.Close()
 
     if row.Next() {
-        var title, ingredients, instructions string
+        var title, ingredients, instructions, image string
 
-        err := row.Scan(&title, &ingredients, &instructions)
+        err := row.Scan(&title, &ingredients, &instructions, &image)
         if err != nil {
             return recipe, err
         }
@@ -69,6 +71,7 @@ func GetRecipeByID(id int) (Recipe, error) {
             Title: title,
             Ingredients: ingredients,
             Instructions: instructions,
+            Image: image,
         }
     }
 
@@ -76,9 +79,9 @@ func GetRecipeByID(id int) (Recipe, error) {
 }
 
 func CreateRecipe(recipe *Recipe) error {
-    query := `INSERT INTO recipes(title, ingredients, instructions) VALUES($1, $2, $3);`
+    query := `INSERT INTO recipes(title, ingredients, instructions, image) VALUES($1, $2, $3, $4);`
 
-    _, err := db.Exec(query, recipe.Title, recipe.Ingredients, recipe.Instructions)
+    _, err := db.Exec(query, recipe.Title, recipe.Ingredients, recipe.Instructions, recipe.Image)
 
     if err != nil {
         return err
@@ -88,9 +91,9 @@ func CreateRecipe(recipe *Recipe) error {
 }
 
 func UpdateRecipe (recipe Recipe, id int) error {
-    query := `UPDATE recipes SET title=$1, ingredients=$2, instructions=$3 WHERE id=$4`
+    query := `UPDATE recipes SET title=$1, ingredients=$2, instructions=$3, image=$4 WHERE id=$5`
 
-    _, err := db.Exec(query, recipe.Title, recipe.Ingredients, recipe.Instructions, id)
+    _, err := db.Exec(query, recipe.Title, recipe.Ingredients, recipe.Instructions, recipe.Image, id)
     if err != nil {
         return err
     }
