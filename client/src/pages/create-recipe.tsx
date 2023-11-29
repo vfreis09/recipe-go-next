@@ -5,6 +5,7 @@ interface Recipe {
   title: string;
   ingredients: string;
   instructions: string;
+  image: string;
 }
 
 const RecipeForm: React.FC = () => {
@@ -12,6 +13,7 @@ const RecipeForm: React.FC = () => {
     title: "",
     ingredients: "",
     instructions: "",
+    image: "",
   });
 
   const updateRecipe = (
@@ -23,7 +25,7 @@ const RecipeForm: React.FC = () => {
       [name]: value,
     });
   };
-
+  console.log(recipe);
   const submitRecipe = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -44,6 +46,7 @@ const RecipeForm: React.FC = () => {
           title: "",
           ingredients: "",
           instructions: "",
+          image: "",
         });
       } else {
         console.error("API Error:", response.status);
@@ -67,7 +70,6 @@ const RecipeForm: React.FC = () => {
             onChange={updateRecipe}
           />
         </div>
-        <input type="file" id="fileInput" accept="image/*" />
         <div>
           <label htmlFor="ingredients">Ingredients:</label>
           <textarea
@@ -84,6 +86,16 @@ const RecipeForm: React.FC = () => {
             name="instructions"
             value={recipe.instructions}
             onChange={updateRecipe}
+          />
+        </div>
+        <div>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            value={recipe.image}
+            onChange={updateRecipe}
+            accept="image/*"
           />
         </div>
         <button type="submit">Submit Recipe</button>
