@@ -14,7 +14,6 @@ export default function Recipe(props: RecipeProp) {
     // Call the deleteRecipe function and pass the id to delete the recipe
     props.onDelete(id);
   };
-  console.log(props.image);
 
   return (
     <div>

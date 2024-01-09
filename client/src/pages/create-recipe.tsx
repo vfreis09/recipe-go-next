@@ -1,3 +1,5 @@
+import path from "path";
+import { writeFile } from "fs/promises";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import Header from "@/components/Header";
 
@@ -23,9 +25,10 @@ const RecipeForm: React.FC = () => {
     setRecipe({
       ...recipe,
       [name]: value,
+      image: value.replace("C:\\fakepath\\", ""),
     });
   };
-  console.log(recipe);
+
   const submitRecipe = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -93,7 +96,6 @@ const RecipeForm: React.FC = () => {
             type="file"
             id="image"
             name="image"
-            value={recipe.image}
             onChange={updateRecipe}
             accept="image/*"
           />
@@ -103,5 +105,12 @@ const RecipeForm: React.FC = () => {
     </div>
   );
 };
+
+//const filename = Date.now() + file.name.replaceAll(" ", "_");
+//const buffer = Buffer.from(await file.arrayBuffer());
+//await writeFile(
+//path.join(process.cwd(), "public/uploads/" + filename),
+//buffer
+//);
 
 export default RecipeForm;
