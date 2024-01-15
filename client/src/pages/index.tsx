@@ -8,7 +8,6 @@ interface RecipeData {
   title: string;
   ingredients: string;
   instructions: string;
-  image: string;
 }
 
 //Fetch data from database
