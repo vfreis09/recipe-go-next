@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface RecipeProp {
   id: number;
   title: string;
@@ -14,7 +16,9 @@ export default function Recipe(props: RecipeProp) {
 
   return (
     <div>
-      <h1>{props.title}</h1>
+      <h1>
+        <Link href={`/recipes/${props.id}`}>{props.title} </Link>
+      </h1>
       <p>ingredients: {props.ingredients}</p>
       <p>instructions: {props.instructions}</p>
       <button onClick={() => handleDeleteClick(props.id)}>delete</button>
