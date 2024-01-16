@@ -35,8 +35,6 @@ export default function EditForm({
     instructions: data.instructions,
   });
 
-  console.log(updatedRecipe);
-
   const updateRecipe = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -50,29 +48,38 @@ export default function EditForm({
   const submitRecipe = async (e: FormEvent) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(`http://localhost:4000/api/recipes/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedRecipe),
-      });
+    if (
+      updatedRecipe.title &&
+      updatedRecipe.ingredients &&
+      updatedRecipe.instructions
+    ) {
+      try {
+        const response = await fetch(
+          `http://localhost:4000/api/recipes/${id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedRecipe),
+          }
+        );
 
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("API Response:", responseData);
-        // reset the form after a successful submission
-        setUpdatedRecipe({
-          title: "",
-          ingredients: "",
-          instructions: "",
-        });
-      } else {
-        console.error("API Error:", response.status);
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log("API Response:", responseData);
+          // reset the form after a successful submission
+          setUpdatedRecipe({
+            title: "",
+            ingredients: "",
+            instructions: "",
+          });
+        } else {
+          console.error("API Error:", response.status);
+        }
+      } catch (error) {
+        console.error("API Error:", error);
       }
-    } catch (error) {
-      console.error("API Error:", error);
     }
   };
 

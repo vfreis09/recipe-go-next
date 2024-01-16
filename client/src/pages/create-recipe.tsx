@@ -27,29 +27,31 @@ const RecipeForm: React.FC = () => {
   const submitRecipe = async (e: FormEvent) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:4000/api/recipes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(recipe),
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("API Response:", responseData);
-        // reset the form after a successful submission
-        setRecipe({
-          title: "",
-          ingredients: "",
-          instructions: "",
+    if (recipe.title && recipe.title && recipe.instructions) {
+      try {
+        const response = await fetch("http://localhost:4000/api/recipes", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(recipe),
         });
-      } else {
-        console.error("API Error:", response.status);
+
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log("API Response:", responseData);
+          // reset the form after a successful submission
+          setRecipe({
+            title: "",
+            ingredients: "",
+            instructions: "",
+          });
+        } else {
+          console.error("API Error:", response.status);
+        }
+      } catch (error) {
+        console.error("API Error:", error);
       }
-    } catch (error) {
-      console.error("API Error:", error);
     }
   };
 
