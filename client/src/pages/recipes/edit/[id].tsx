@@ -30,10 +30,12 @@ export default function EditForm({
   id,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [updatedRecipe, setUpdatedRecipe] = useState<Recipe>({
-    title: "",
-    ingredients: "",
-    instructions: "",
+    title: data.title,
+    ingredients: data.ingredients,
+    instructions: data.instructions,
   });
+
+  console.log(updatedRecipe);
 
   const updateRecipe = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
