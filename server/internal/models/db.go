@@ -33,6 +33,7 @@ func Init() {
         title VARCHAR(64) NOT NULL, 
         ingredients TEXT NOT NULL,
         instructions TEXT NOT NULL,
+        categories VARCHAR(12) NOT NULL,
         PRIMARY KEY (ID));`
 
     _, err = db.Exec(query)
