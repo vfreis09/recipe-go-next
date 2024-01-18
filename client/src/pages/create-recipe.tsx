@@ -96,7 +96,7 @@ const RecipeForm: React.FC = () => {
           />
         </div>
         <div>
-          Categories:
+          Category:
           <label>
             <input
               id="categories"
@@ -152,7 +152,7 @@ const RecipeForm: React.FC = () => {
               id="categories"
               name="categories"
               type="radio"
-              value="Baked-goods"
+              value="baked-goods"
               onChange={updateRecipe}
             />
             Baked-goods

@@ -37,8 +37,6 @@ export default function EditForm({
     categories: data.categories,
   });
 
-  console.log(updatedRecipe);
-
   const updateRecipe = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -122,7 +120,7 @@ export default function EditForm({
           />
         </div>
         <div>
-          Categories:
+          Category:
           <label>
             <input
               id="categories"
@@ -178,7 +176,7 @@ export default function EditForm({
               id="categories"
               name="categories"
               type="radio"
-              value="Baked-goods"
+              value="baked-goods"
               onChange={updateRecipe}
             />
             Baked-goods
