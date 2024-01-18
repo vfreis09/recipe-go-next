@@ -6,6 +6,7 @@ interface Recipe {
   title: string;
   ingredients: string;
   instructions: string;
+  categories: string;
 }
 
 interface Props {
@@ -33,7 +34,10 @@ export default function EditForm({
     title: data.title,
     ingredients: data.ingredients,
     instructions: data.instructions,
+    categories: data.categories,
   });
+
+  console.log(updatedRecipe);
 
   const updateRecipe = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -51,7 +55,8 @@ export default function EditForm({
     if (
       updatedRecipe.title &&
       updatedRecipe.ingredients &&
-      updatedRecipe.instructions
+      updatedRecipe.instructions &&
+      updatedRecipe.categories
     ) {
       try {
         const response = await fetch(
@@ -73,6 +78,7 @@ export default function EditForm({
             title: "",
             ingredients: "",
             instructions: "",
+            categories: "",
           });
         } else {
           console.error("API Error:", response.status);
@@ -114,6 +120,79 @@ export default function EditForm({
             value={updatedRecipe.instructions}
             onChange={updateRecipe}
           />
+        </div>
+        <div>
+          Categories:
+          <label>
+            <input
+              id="categories"
+              name="categories"
+              type="radio"
+              value="breakfast"
+              onChange={updateRecipe}
+            />
+            Breakfast
+          </label>
+          <label>
+            <input
+              id="categories"
+              name="categories"
+              type="radio"
+              value="appetizer"
+              onChange={updateRecipe}
+            />
+            Appetizer
+          </label>
+          <label>
+            <input
+              id="categories"
+              name="categories"
+              type="radio"
+              value="salad"
+              onChange={updateRecipe}
+            />
+            Salad
+          </label>
+          <label>
+            <input
+              id="categories"
+              name="categories"
+              type="radio"
+              value="main-course"
+              onChange={updateRecipe}
+            />
+            Main-course
+          </label>
+          <label>
+            <input
+              id="categories"
+              name="categories"
+              type="radio"
+              value="side-dish"
+              onChange={updateRecipe}
+            />
+            Side-dish
+          </label>
+          <label>
+            <input
+              id="categories"
+              name="categories"
+              type="radio"
+              value="Baked-goods"
+              onChange={updateRecipe}
+            />
+            Baked-goods
+          </label>
+          <label>
+            <input
+              id="categories"
+              name="categories"
+              type="radio"
+              value="dessert"
+              onChange={updateRecipe}
+            />
+            Dessert
+          </label>
         </div>
         <button type="submit">Submit Recipe</button>
       </form>

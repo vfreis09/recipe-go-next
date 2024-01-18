@@ -5,6 +5,7 @@ interface RecipeProp {
   title: string;
   ingredients: string;
   instructions: string;
+  categories: string;
   onDelete: (id: number) => void;
 }
 
@@ -21,6 +22,7 @@ export default function Recipe(props: RecipeProp) {
       </h1>
       <p>ingredients: {props.ingredients}</p>
       <p>instructions: {props.instructions}</p>
+      <p>category: {props.categories}</p>
       <button onClick={() => handleDeleteClick(props.id)}>delete</button>
       <button>
         <Link href={`/recipes/edit/${props.id}`}>edit</Link>
