@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import Header from "@/components/Header";
 
 interface Recipe {

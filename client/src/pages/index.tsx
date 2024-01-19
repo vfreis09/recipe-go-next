@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Header from "@/components/Header";
 import Recipe from "@/components/Recipe";
+import SearchInput from "@/components/Search";
 
 interface RecipeData {
   id: number;
@@ -53,6 +54,7 @@ export default function Home({
   return (
     <div>
       <Header />
+      <SearchInput />
       {recipes}
     </div>
   );
