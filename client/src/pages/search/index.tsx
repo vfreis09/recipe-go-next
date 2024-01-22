@@ -1,8 +1,30 @@
-SyntaxError: ';' expected. (28:32)
-[0m [90m 26 |[39m       [33m<[39m[33mSearchInput[39m [33m/[39m[33m>[39m[0m
-[0m [90m 27 |[39m       {data[33m.[39mmap((recipe) [33m=>[39m {[0m
-[0m[31m[1m>[22m[39m[90m 28 |[39m       [33m<[39m[33mdiv[39m[33m>[39m{recipe[33m.[39mtitle}[33m<[39m[33m/[39m[33mdiv[39m[33m>[39m)[33m;[39m}[0m
-[0m [90m    |[39m                                [31m[1m^[22m[39m[0m
-[0m [90m 29 |[39m     [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m[0m
-[0m [90m 30 |[39m   )[33m;[39m[0m
-[0m [90m 31 |[39m }[33m;[39m[0m
+import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import SearchInput from "@/components/Search";
+
+//Fetch data from database
+export const getServerSideProps = (async (context) => {
+  console.log(context.query);
+  const res = await fetch(
+    `http://localhost:4000/api/search?q=${context.query}`
+  );
+  const data = await res.json();
+  return { props: { data } };
+}) satisfies GetServerSideProps<{
+  data: any;
+}>;
+
+const SearchPage = (): //data
+InferGetServerSidePropsType<typeof getServerSideProps> => {
+  //const search = useSearchParams();
+  //const searchQuery = search.get("q");
+  //const encodedSearchQuery = encodeURI(searchQuery || "");
+  //return (
+  //<div>
+  //<SearchInput />
+  //{data.map((recipe) => {
+  //<div>{recipe.title}</div>);}
+  //</div>
+  //);
+};
+
+export default SearchPage;
