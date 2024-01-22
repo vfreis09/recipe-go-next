@@ -83,10 +83,10 @@ func GetQuerySearch(search string) ([]Recipe, error) {
     
     query := `SELECT * FROM recipes
         WHERE 
-        title LIKE $1 OR
-        ingredients LIKE $1 OR
-        instructions LIKE $1 OR
-        categories LIKE $1;`
+        title ILIKE '%' || $1 || '%' OR
+        ingredients ILIKE '%' || $1 || '%' OR 
+        instructions ILIKE '%' || $1 || '%' OR 
+        categories ILIKE '%' || $1 || '%'`
 
     rows, err := db.Query(query, search)
 
