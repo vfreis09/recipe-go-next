@@ -1,6 +1,7 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Header from "@/components/Header";
 import Recipe from "@/components/Recipe";
+import SearchInput from "@/components/Search";
 
 interface Props {
   data?: any;
@@ -26,6 +27,7 @@ export default function GetRecipeById({
   return (
     <div>
       <Header />
+      <SearchInput />
       <Recipe key={id} {...data} />
     </div>
   );

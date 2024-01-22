@@ -1,4 +1,5 @@
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import Link from "next/link";
 import Header from "@/components/Header";
 import SearchInput from "@/components/Search";
 
@@ -31,7 +32,14 @@ const SearchPage: React.FC<
       <Header />
       <SearchInput />
       {data.map((recipe: RecipeData) => (
-        <div key={recipe.id}>{recipe.title}</div>
+        <div key={recipe.id}>
+          <h2>
+            <Link href={`/recipes/${recipe.id}`}>{recipe.title}</Link>
+          </h2>
+          <p>Ingredients: {recipe.ingredients}</p>
+          <p>Instructions: {recipe.instructions}</p>
+          <p>Categories: {recipe.categories}</p>
+        </div>
       ))}
     </div>
   );
