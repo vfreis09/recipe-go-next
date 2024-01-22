@@ -1,30 +1,40 @@
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import Header from "@/components/Header";
 import SearchInput from "@/components/Search";
 
-//Fetch data from database
-export const getServerSideProps = (async (context) => {
-  console.log(context.query);
-  const res = await fetch(
-    `http://localhost:4000/api/search?q=${context.query}`
-  );
-  const data = await res.json();
-  return { props: { data } };
-}) satisfies GetServerSideProps<{
-  data: any;
-}>;
+interface RecipeData {
+  id: number;
+  title: string;
+  ingredients: string;
+  instructions: string;
+  categories: string;
+}
 
-const SearchPage = (): //data
-InferGetServerSidePropsType<typeof getServerSideProps> => {
-  //const search = useSearchParams();
-  //const searchQuery = search.get("q");
-  //const encodedSearchQuery = encodeURI(searchQuery || "");
-  //return (
-  //<div>
-  //<SearchInput />
-  //{data.map((recipe) => {
-  //<div>{recipe.title}</div>);}
-  //</div>
-  //);
+// Fetch data from database
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const res = await fetch(
+    `http://localhost:4000/api/search?q=${context.query.q}`
+  );
+  const data: RecipeData[] = await res.json();
+  return { props: { data } };
+};
+
+const SearchPage: React.FC<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({ data }) => {
+  if (!data) {
+    return <div>Sorry, nothing was found!</div>;
+  }
+
+  return (
+    <div>
+      <Header />
+      <SearchInput />
+      {data.map((recipe: RecipeData) => (
+        <div key={recipe.id}>{recipe.title}</div>
+      ))}
+    </div>
+  );
 };
 
 export default SearchPage;
