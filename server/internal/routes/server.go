@@ -15,6 +15,8 @@ func Start() {
 
     e.GET("/api/recipes/:id", GetRecipe)
 
+    e.GET("/api/search", GetSearch)
+
     e.POST("/api/recipes", PostRecipe)
 
     e.PUT("/api/recipes/:id", UpdateHandler)

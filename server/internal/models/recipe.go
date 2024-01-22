@@ -11,7 +11,7 @@ type Recipe struct {
 func GetAllRecipes() ([]Recipe, error) {
     var recipes []Recipe
     
-    query := `SELECT id, title, ingredients, instructions, categories FROM recipes`
+    query := `SELECT * FROM recipes`
 
     rows, err := db.Query(query)
 
@@ -76,6 +76,48 @@ func GetRecipeByID(id int) (Recipe, error) {
     }
 
     return recipe, nil
+}
+
+func GetQuerySearch(search string) ([]Recipe, error) {
+    var recipes []Recipe
+    
+    query := `SELECT * FROM recipes
+        WHERE 
+        title LIKE $1 OR
+        ingredients LIKE $1 OR
+        instructions LIKE $1 OR
+        categories LIKE $1;`
+
+    rows, err := db.Query(query, search)
+
+    if err != nil {
+        return recipes, err
+    }
+
+    defer rows.Close()
+
+    for rows.Next() {
+        var id int
+        var title, ingredients, instructions, categories string
+
+        err := rows.Scan(&id, &title, &ingredients, &instructions, &categories)
+
+        if err != nil {
+            return recipes, err 
+        }
+        
+        recipe := Recipe {
+            ID: id,
+            Title: title,
+            Ingredients: ingredients,
+            Instructions: instructions,
+            Categories: categories,
+        }
+
+        recipes = append(recipes, recipe)
+    }
+
+    return recipes, nil
 }
 
 func CreateRecipe(recipe *Recipe) error {

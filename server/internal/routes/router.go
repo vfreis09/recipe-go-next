@@ -32,6 +32,18 @@ func GetRecipe(c echo.Context) error {
         return c.JSON(http.StatusOK, recipe)    
     }}
 
+func GetSearch(c echo.Context) error {
+    search := c.QueryParam("q")
+
+    recipes, err := models.GetQuerySearch(search)
+
+    if err != nil {
+        return err
+    } else {
+        return c.JSON(http.StatusOK, recipes)    
+    }
+}
+
 func PostRecipe(c echo.Context) error {
     recipe := new(models.Recipe) 
 
