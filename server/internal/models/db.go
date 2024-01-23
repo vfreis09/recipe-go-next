@@ -34,6 +34,8 @@ func Init() {
         ingredients TEXT NOT NULL,
         instructions TEXT NOT NULL,
         categories VARCHAR(12) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY (ID));`
 
     _, err = db.Exec(query)

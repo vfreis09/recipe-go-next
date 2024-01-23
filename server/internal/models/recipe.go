@@ -11,7 +11,7 @@ type Recipe struct {
 func GetAllRecipes() ([]Recipe, error) {
     var recipes []Recipe
     
-    query := `SELECT * FROM recipes`
+    query := `SELECT id, title, ingredients, instructions, categories FROM recipes`
 
     rows, err := db.Query(query)
 
@@ -81,7 +81,7 @@ func GetRecipeByID(id int) (Recipe, error) {
 func GetQuerySearch(search string) ([]Recipe, error) {
     var recipes []Recipe
     
-    query := `SELECT * FROM recipes
+    query := `SELECT id, title, ingredients, instructions, categories FROM recipes
         WHERE 
         title ILIKE '%' || $1 || '%' OR
         ingredients ILIKE '%' || $1 || '%' OR 
@@ -133,7 +133,7 @@ func CreateRecipe(recipe *Recipe) error {
 }
 
 func UpdateRecipe (recipe Recipe, id int) error {
-    query := `UPDATE recipes SET title=$1, ingredients=$2, instructions=$3, categories=$4 WHERE id=$5`
+    query := `UPDATE recipes SET title=$1, ingredients=$2, instructions=$3, categories=$4, updated_at = NOW() WHERE id=$5`
 
     _, err := db.Exec(query, recipe.Title, recipe.Ingredients, recipe.Instructions, recipe.Categories, id)
     if err != nil {
