@@ -49,7 +49,7 @@ func GetRecipeByID(id int) (Recipe, error) {
     var recipe Recipe 
 
     query := `SELECT title, ingredients, instructions, categories FROM recipes WHERE id=$1;`
-
+    
     row, err := db.Query(query, id)
 
     if err != nil {
