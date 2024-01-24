@@ -94,6 +94,16 @@ func DelRecipe(c echo.Context) error {
     return c.JSON(http.StatusCreated, "Recipe deleted")
 }
 
+func Auth(c echo.Context) error {
+    session, _ := models.Store.Get(c.Request(), "session")
+
+    session.Values["authenticated"] = true
+
+    session.Save(c.Request(), c.Response())
+
+    return nil
+}
+
 func PostSignup(c echo.Context) error {
     user := new(models.User)
 
@@ -108,11 +118,27 @@ func PostSignup(c echo.Context) error {
     }
     
     return c.JSON(http.StatusCreated, user)
-
 }
 
 func PostLogin(c echo.Context) error {
-    return nil
+    user := new(models.UserLogin)
+
+    if err := c.Bind(user); err != nil {
+        return err
+    }
+
+    err := models.LoginUser(user)
+
+    if err == nil {
+        session, _ := models.Store.Get(c.Request(), "session")
+        session.Values["user"] = user
+        session.Save(c.Request(), c.Response())
+    }
+
+    if err != nil {
+        return err
+    }
+    return c.JSON(http.StatusOK, "User Logged In")
 }
 
 func PostLogout(c echo.Context) error {

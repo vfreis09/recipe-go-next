@@ -13,7 +13,7 @@ import (
 
 var db *sql.DB
 
-var store = sessions.NewCookieStore([]byte(os.Getenv("STORE_SECRET")))
+var Store = sessions.NewCookieStore([]byte(os.Getenv("STORE_SECRET")))
 
 func Init() {
     err := godotenv.Load()
@@ -22,7 +22,7 @@ func Init() {
         log.Fatal("Error loading .env file")
     }
 
-    store.Options.HttpOnly = true
+    Store.Options.HttpOnly = true
     gob.Register(&User{})
     
     connStr := os.Getenv("DB_STRING")

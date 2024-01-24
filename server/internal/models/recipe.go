@@ -18,6 +18,11 @@ type User struct {
     Role string `json:"role"`
 }
 
+type UserLogin struct {
+    Username string `json:"username"`
+    Password string `json:"password"`
+}
+
 func GetAllRecipes() ([]Recipe, error) {
     var recipes []Recipe
     
@@ -179,5 +184,21 @@ func CreateUser(user *User) error {
         return err
     }
 
+    return nil
+}
+
+func LoginUser(userLogin *UserLogin) error {
+    var storedPassword string
+    err := db.QueryRow("SELECT password FROM users WHERE username = $1", userLogin.Username).Scan(&storedPassword)
+
+    if err != nil {
+        return err
+    }
+
+    err = bcrypt.CompareHashAndPassword([]byte(storedPassword), []byte(userLogin.Password))
+    if err != nil {
+        return err
+    }
+    
     return nil
 }
