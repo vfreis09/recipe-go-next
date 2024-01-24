@@ -1,15 +1,20 @@
 package models
 
 import (
-    "fmt"
-    "log"
-    "os"
-    "github.com/joho/godotenv"
-    "database/sql"
-    _ "github.com/lib/pq"
+	"database/sql"
+	"encoding/gob"
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/gorilla/sessions"
+	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 )
 
 var db *sql.DB
+
+var store = sessions.NewCookieStore([]byte(os.Getenv("STORE_SECRET")))
 
 func Init() {
     err := godotenv.Load()
@@ -17,6 +22,9 @@ func Init() {
     if err != nil {
         log.Fatal("Error loading .env file")
     }
+
+    store.Options.HttpOnly = true
+    gob.Register(&User{})
     
     connStr := os.Getenv("DB_STRING")
 

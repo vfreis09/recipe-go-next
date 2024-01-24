@@ -10,6 +10,10 @@ func Start() {
     e := echo.New()
 
     e.Use(middleware.CORS())
+
+    e.Use(middleware.Logger())
+
+    e.Use(middleware.Recover())
     
     e.GET("/api/recipes", Home)
 
