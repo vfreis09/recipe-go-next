@@ -13,7 +13,7 @@ import (
 
 var db *sql.DB
 
-var Store = sessions.NewCookieStore([]byte(os.Getenv("STORE_SECRET")))
+var Store = sessions.NewCookieStore([]byte("my-secret"))
 
 func Init() {
     err := godotenv.Load()

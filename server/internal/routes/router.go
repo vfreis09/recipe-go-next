@@ -1,10 +1,12 @@
 package routes
 
 import (
-    "net/http"
-    "github.com/labstack/echo/v4"
-    "github.com/vfreis09/recipe-go-next/internal/models"
-    "strconv"
+	"fmt"
+	"net/http"
+	"strconv"
+
+	"github.com/labstack/echo/v4"
+	"github.com/vfreis09/recipe-go-next/internal/models"
 )
 
 func Home(c echo.Context) error {
@@ -122,6 +124,7 @@ func PostSignup(c echo.Context) error {
 
 func PostLogin(c echo.Context) error {
     user := new(models.UserLogin)
+    userCookie := new(models.User)
 
     if err := c.Bind(user); err != nil {
         return err
@@ -129,15 +132,18 @@ func PostLogin(c echo.Context) error {
 
     err := models.LoginUser(user)
 
-    if err == nil {
-        session, _ := models.Store.Get(c.Request(), "session")
-        session.Values["user"] = user
-        session.Save(c.Request(), c.Response())
-    }
-
     if err != nil {
         return err
     }
+
+    session, _ := models.Store.Get(c.Request(), "session")
+    session.Values["user"] = userCookie
+    err = session.Save(c.Request(), c.Response())
+    if err != nil {
+        return err
+    }
+    fmt.Println(session)
+
     return c.JSON(http.StatusOK, "User Logged In")
 }
 
