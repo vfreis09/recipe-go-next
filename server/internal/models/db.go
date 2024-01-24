@@ -13,7 +13,7 @@ import (
 
 var db *sql.DB
 
-var Store = sessions.NewCookieStore([]byte("my-secret"))
+var Store *sessions.CookieStore
 
 func Init() {
     err := godotenv.Load()
@@ -21,6 +21,10 @@ func Init() {
     if err != nil {
         log.Fatal("Error loading .env file")
     }
+
+    secretKey := os.Getenv("STORE_SECRET")
+
+    Store = sessions.NewCookieStore([]byte(secretKey))
 
     Store.Options.HttpOnly = true
     gob.Register(&User{})

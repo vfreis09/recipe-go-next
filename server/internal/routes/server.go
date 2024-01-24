@@ -13,7 +13,7 @@ func Start() {
 
     e.Use(middleware.Logger())
 
-    e.Use(middleware.Recover())
+    //e.Use(middleware.Recover())
     
     e.GET("/api/recipes", Home)
 
@@ -31,7 +31,7 @@ func Start() {
 
     e.POST("api/login", PostLogin)
 
-    e.POST("api/logout", PostLogout)
+    e.GET("api/logout", GetLogout)
 
     e.Logger.Fatal(e.Start(":4000"))
 }

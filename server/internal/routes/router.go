@@ -147,6 +147,6 @@ func PostLogin(c echo.Context) error {
     return c.JSON(http.StatusOK, "User Logged In")
 }
 
-func PostLogout(c echo.Context) error {
+func GetLogout(c echo.Context) error {
     return nil
 }
