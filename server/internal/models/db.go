@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-
 	"github.com/gorilla/sessions"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"

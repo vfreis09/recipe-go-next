@@ -1,5 +1,7 @@
 package models
 
+import "golang.org/x/crypto/bcrypt"
+
 type Recipe struct {
     ID int `json:"id"`
     Title string `json:"title"`
@@ -158,5 +160,24 @@ func DeleteRecipe(id int) error {
     if err != nil {
         return err
     }
+    return nil
+}
+
+func CreateUser(user *User) error {
+    password := user.Password
+
+    hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+    if err != nil {
+        return err
+    }
+
+    query := `INSERT INTO users (username, email, password) VALUES ($1, $2, $3)`
+
+    _, err = db.Exec(query, user.Username, user.Email, hashedPassword)
+
+    if err != nil {
+        return err
+    }
+
     return nil
 }

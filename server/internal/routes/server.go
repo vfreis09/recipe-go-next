@@ -27,5 +27,11 @@ func Start() {
 
     e.DELETE("/api/recipes/:id", DelRecipe)
 
+    e.POST("/api/signup", PostSignup)
+
+    e.POST("api/login", PostLogin)
+
+    e.POST("api/logout", PostLogout)
+
     e.Logger.Fatal(e.Start(":4000"))
 }

@@ -93,3 +93,28 @@ func DelRecipe(c echo.Context) error {
     
     return c.JSON(http.StatusCreated, "Recipe deleted")
 }
+
+func PostSignup(c echo.Context) error {
+    user := new(models.User)
+
+    if err := c.Bind(user); err != nil {
+        return err
+    }
+
+    err := models.CreateUser(user)
+
+    if err != nil {
+        return err
+    }
+    
+    return c.JSON(http.StatusCreated, user)
+
+}
+
+func PostLogin(c echo.Context) error {
+    return nil
+}
+
+func PostLogout(c echo.Context) error {
+    return nil
+}
