@@ -148,5 +148,15 @@ func PostLogin(c echo.Context) error {
 }
 
 func GetLogout(c echo.Context) error {
-    return nil
+    session, _ := models.Store.Get(c.Request(), "session")
+
+    // Clear the session data to log the user out
+    session.Values["user"] = nil
+
+    err := session.Save(c.Request(), c.Response())
+    if err != nil {
+        return err
+    }
+
+    return c.String(http.StatusOK, "Logged out successfully")
 }
