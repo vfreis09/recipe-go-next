@@ -54,10 +54,9 @@ func Init() {
         ingredients TEXT NOT NULL,
         instructions TEXT NOT NULL,
         categories VARCHAR(12) NOT NULL,
+	username VARCHAR(50) REFERENCES users(username) ON DELETE CASCADE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        user_id INT REFERENCES users(id) ON DELETE CASCADE
-        );`
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);`
 
     _, err = db.Exec(query)
 

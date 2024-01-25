@@ -127,6 +127,7 @@ export default function EditForm({
               name="categories"
               type="radio"
               value="breakfast"
+              checked={updatedRecipe.categories === "breakfast"}
               onChange={updateRecipe}
             />
             Breakfast
@@ -137,6 +138,7 @@ export default function EditForm({
               name="categories"
               type="radio"
               value="appetizer"
+              checked={updatedRecipe.categories === "appetizer"}
               onChange={updateRecipe}
             />
             Appetizer
@@ -147,6 +149,7 @@ export default function EditForm({
               name="categories"
               type="radio"
               value="salad"
+              checked={updatedRecipe.categories === "salad"}
               onChange={updateRecipe}
             />
             Salad
@@ -157,6 +160,7 @@ export default function EditForm({
               name="categories"
               type="radio"
               value="main-course"
+              checked={updatedRecipe.categories === "main-course"}
               onChange={updateRecipe}
             />
             Main-course
@@ -167,6 +171,7 @@ export default function EditForm({
               name="categories"
               type="radio"
               value="side-dish"
+              checked={updatedRecipe.categories === "side-dish"}
               onChange={updateRecipe}
             />
             Side-dish
@@ -177,6 +182,7 @@ export default function EditForm({
               name="categories"
               type="radio"
               value="baked-goods"
+              checked={updatedRecipe.categories === "baked-goods"}
               onChange={updateRecipe}
             />
             Baked-goods
@@ -187,6 +193,7 @@ export default function EditForm({
               name="categories"
               type="radio"
               value="dessert"
+              checked={updatedRecipe.categories === "dessert"}
               onChange={updateRecipe}
             />
             Dessert
