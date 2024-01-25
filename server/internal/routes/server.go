@@ -9,7 +9,10 @@ func Start() {
     //Setting up echo 
     e := echo.New()
 
-    e.Use(middleware.CORS())
+    e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+	AllowOrigins: []string{"http://localhost:3000"},
+	AllowCredentials: true,
+    }))
 
     e.Use(middleware.Logger())
 
