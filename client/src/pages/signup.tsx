@@ -31,6 +31,11 @@ const SignupPage = () => {
         if (response.ok) {
           const responseData = await response.json();
           console.log("API Response:", responseData);
+          setUser({
+            username: "",
+            email: "",
+            password: "",
+          });
         } else {
           console.error(response.status);
         }
