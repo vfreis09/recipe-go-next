@@ -12,10 +12,17 @@ func Home(c echo.Context) error {
     recipes, err := models.GetAllRecipes()
 
     if err != nil {
-        return err
-    } else {
-        return c.JSON(http.StatusOK, recipes)    
+        return err    
     }
+
+    session, _ := models.Store.Get(c.Request(), "session")
+    sessionData := session.Values["user"] 
+    response := map[string]interface{}{
+        "recipes": recipes,
+        "session": sessionData,
+    }
+
+    return c.JSON(http.StatusOK, response) 
 }
 
 func GetRecipe(c echo.Context) error {
@@ -29,9 +36,10 @@ func GetRecipe(c echo.Context) error {
 
     if err != nil {
         return err
-    } else {
-        return c.JSON(http.StatusOK, recipe)    
-    }}
+    } 
+    
+    return c.JSON(http.StatusOK, recipe)    
+}
 
 func GetSearch(c echo.Context) error {
     search := c.QueryParam("q")
@@ -95,16 +103,6 @@ func DelRecipe(c echo.Context) error {
     return c.JSON(http.StatusCreated, "Recipe deleted")
 }
 
-func Auth(c echo.Context) error {
-    session, _ := models.Store.Get(c.Request(), "session")
-
-    session.Values["authenticated"] = true
-
-    session.Save(c.Request(), c.Response())
-
-    return nil
-}
-
 func PostSignup(c echo.Context) error {
     user := new(models.User)
 
@@ -118,7 +116,7 @@ func PostSignup(c echo.Context) error {
         return err
     }
     
-    return c.JSON(http.StatusCreated, user)
+    return c.JSON(http.StatusCreated, "User created")
 }
 
 func PostLogin(c echo.Context) error {
@@ -141,7 +139,7 @@ func PostLogin(c echo.Context) error {
         return err
     }
 
-    return c.JSON(http.StatusOK, user.Username)
+    return c.JSON(http.StatusOK, "User Logged In")
 }
 
 func GetLogout(c echo.Context) error {

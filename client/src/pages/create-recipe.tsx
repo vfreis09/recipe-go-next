@@ -1,4 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 import Header from "@/components/Header";
 
 interface Recipe {
@@ -15,6 +17,10 @@ const RecipeForm: React.FC = () => {
     instructions: "",
     categories: "",
   });
+
+  const { data: session, status } = useSession();
+
+  console.log(session);
 
   const updateRecipe = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -62,6 +68,15 @@ const RecipeForm: React.FC = () => {
       }
     }
   };
+
+  if (!session?.user) {
+    // Redirect or show an unauthorized message
+    return (
+      <Link href="/login">
+        <div>Unauthorized</div>
+      </Link>
+    );
+  }
 
   return (
     <div>
