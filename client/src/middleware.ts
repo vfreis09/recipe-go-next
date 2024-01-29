@@ -1,17 +1,22 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
+//import { getSession } from "next-auth/react";
 
 // Authorization middleware
 const authorizationMiddleware =
   (handler: any) => async (req: NextApiRequest, res: NextApiResponse) => {
     try {
-      // Get the user session
-      const session = await getSession({ req });
+      const sessionCookie = req.cookies?.session;
+      if (!sessionCookie) {
+        res.writeHead(401, { Location: "/login" });
+        return res.end();
+      }
+
+      const currentUser = JSON.parse(sessionCookie);
 
       // Check if the user is authenticated
-      if (!session?.user) {
-        res.redirect(401, "/login");
-        return res.status(401).json({ error: "Unauthorized" });
+      if (!currentUser || !currentUser.user) {
+        res.writeHead(401, { Location: "/login" });
+        return res.end();
       }
 
       // If authenticated, proceed to the next handler

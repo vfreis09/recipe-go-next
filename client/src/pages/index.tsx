@@ -4,12 +4,17 @@ import Header from "@/components/Header";
 import Recipe from "@/components/Recipe";
 import SearchInput from "@/components/Search";
 
-interface RecipeData {
+interface Recipe {
   id: number;
   title: string;
   ingredients: string;
   instructions: string;
   categories: string;
+}
+
+interface RecipeData {
+  recipes: Recipe;
+  user: string;
 }
 
 //Fetch data from database
@@ -24,8 +29,8 @@ export const getServerSideProps = (async () => {
 export default function Home({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [dataRecipes, setDataRecipes] = useState<RecipeData[]>(data.recipes);
-  console.log(data);
+  const [dataRecipes, setDataRecipes] = useState<Recipe[]>(data.recipes);
+  console.log(data.user);
   const deleteRecipe = async (id: number) => {
     try {
       const response = await fetch(`http://localhost:4000/api/recipes/${id}`, {
@@ -47,7 +52,7 @@ export default function Home({
     }
   };
   //Loop on the recipe api and send it to the recipe component as props
-  const recipes = dataRecipes.map((recipe: RecipeData) => {
+  const recipes = dataRecipes.map((recipe: Recipe) => {
     return <Recipe key={recipe.id} onDelete={deleteRecipe} {...recipe} />;
   });
 

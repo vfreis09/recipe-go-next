@@ -1,6 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import { useSession } from "next-auth/react";
-import Link from "next/link";
+//import Link from "next/link";
 import Header from "@/components/Header";
 
 interface Recipe {
@@ -17,10 +16,6 @@ const RecipeForm: React.FC = () => {
     instructions: "",
     categories: "",
   });
-
-  const { data: session, status } = useSession();
-
-  console.log(session);
 
   const updateRecipe = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
