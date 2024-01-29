@@ -19,7 +19,7 @@ func Home(c echo.Context) error {
     sessionData := session.Values["user"] 
     response := map[string]interface{}{
         "recipes": recipes,
-        "session": sessionData,
+        "user": sessionData,
     }
 
     return c.JSON(http.StatusOK, response) 

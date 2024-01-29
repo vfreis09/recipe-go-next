@@ -24,8 +24,8 @@ export const getServerSideProps = (async () => {
 export default function Home({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [dataRecipes, setDataRecipes] = useState<RecipeData[]>(data);
-
+  const [dataRecipes, setDataRecipes] = useState<RecipeData[]>(data.recipes);
+  console.log(data);
   const deleteRecipe = async (id: number) => {
     try {
       const response = await fetch(`http://localhost:4000/api/recipes/${id}`, {

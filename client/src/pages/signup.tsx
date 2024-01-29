@@ -49,37 +49,34 @@ const SignupPage = () => {
     <div>
       <Header />
       <form onSubmit={submitUser}>
-        <label htmlFor="username">
-          Username
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={user.username}
-            onChange={updateUser}
-          />
-        </label>
-        <label htmlFor="email">
-          Email
-          <input
-            type="text"
-            id="email"
-            name="email"
-            value={user.email}
-            onChange={updateUser}
-          />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={user.password}
-            onChange={updateUser}
-          />
-        </label>
-        <button type="submit">Submit</button>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Username"
+          value={user.username}
+          onChange={updateUser}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          value={user.email}
+          onChange={updateUser}
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          value={user.password}
+          onChange={updateUser}
+          required
+        />
+        <button type="submit">Signup</button>
       </form>
     </div>
   );

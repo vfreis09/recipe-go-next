@@ -48,27 +48,25 @@ const LoginPage = () => {
     <div>
       <Header />
       <form onSubmit={submitUser}>
-        <label htmlFor="username">
-          Username
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={user.username}
-            onChange={updateUser}
-          />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={user.password}
-            onChange={updateUser}
-          />
-        </label>
-        <button type="submit">Submit</button>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Username"
+          value={user.username}
+          onChange={updateUser}
+          required
+        />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          value={user.password}
+          onChange={updateUser}
+          required
+        />
+        <button type="submit">Login</button>
       </form>
     </div>
   );

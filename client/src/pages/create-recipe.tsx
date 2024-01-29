@@ -69,15 +69,6 @@ const RecipeForm: React.FC = () => {
     }
   };
 
-  if (!session?.user) {
-    // Redirect or show an unauthorized message
-    return (
-      <Link href="/login">
-        <div>Unauthorized</div>
-      </Link>
-    );
-  }
-
   return (
     <div>
       <Header />
