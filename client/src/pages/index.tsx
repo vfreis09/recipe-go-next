@@ -13,18 +13,23 @@ interface Recipe {
 }
 
 interface RecipeData {
-  recipes: Recipe;
+  recipes: Recipe[];
   user: string;
 }
 
-//Fetch data from database
-export const getServerSideProps = (async () => {
-  const res = await fetch("http://localhost:4000/api/recipes");
-  const data = await res.json();
-  return { props: { data } };
-}) satisfies GetServerSideProps<{
+export const getServerSideProps: GetServerSideProps<{
   data: RecipeData;
-}>;
+}> = async () => {
+  try {
+    const res = await fetch("http://localhost:4000/api/recipes");
+    const data: RecipeData = await res.json();
+    console.log("API Response:", data); // Add this line for debugging
+    return { props: { data } };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return { props: { data: { recipes: [], user: "" } } };
+  }
+};
 
 export default function Home({
   data,

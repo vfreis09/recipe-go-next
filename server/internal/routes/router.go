@@ -4,6 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gorilla/sessions"
+	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
 	"github.com/vfreis09/recipe-go-next/internal/models"
 )
@@ -15,8 +17,13 @@ func Home(c echo.Context) error {
         return err    
     }
 
-    session, _ := models.Store.Get(c.Request(), "session")
-    sessionData := session.Values["user"] 
+    sess, err := session.Get("session", c)
+
+
+    sessionData, ok := sess.Values["user"]
+    if !ok {
+        return err
+    }
     response := map[string]interface{}{
         "recipes": recipes,
         "user": sessionData,
@@ -131,10 +138,14 @@ func PostLogin(c echo.Context) error {
     if err != nil {
         return err
     }
-
-    session, _ := models.Store.Get(c.Request(), "session")
-    session.Values["user"] = user.Username
-    err = session.Save(c.Request(), c.Response())
+    sess, _ := session.Get("session", c)
+    sess.Options = &sessions.Options{
+        Path: "/",
+        MaxAge: 86400 * 7,
+        HttpOnly: true,
+    }
+    sess.Values["user"] = user.Username
+    err = sess.Save(c.Request(), c.Response())
     if err != nil {
         return err
     }
@@ -143,12 +154,12 @@ func PostLogin(c echo.Context) error {
 }
 
 func GetLogout(c echo.Context) error {
-    session, _ := models.Store.Get(c.Request(), "session")
+    sess, _ := session.Get("session", c)
 
     // Clear the session data to log the user out
-    session.Values["user"] = nil
+    sess.Values["user"] = nil
 
-    err := session.Save(c.Request(), c.Response())
+    err := sess.Save(c.Request(), c.Response())
     if err != nil {
         return err
     }

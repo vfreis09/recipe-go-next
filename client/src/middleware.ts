@@ -7,17 +7,17 @@ const authorizationMiddleware =
     try {
       const sessionCookie = req.cookies?.session;
       if (!sessionCookie) {
-        res.writeHead(401, { Location: "/login" });
+        res.redirect(401, "/login");
         return res.end();
       }
 
-      const currentUser = JSON.parse(sessionCookie);
+      //const currentUser = JSON.parse(sessionCookie);
 
       // Check if the user is authenticated
-      if (!currentUser || !currentUser.user) {
-        res.writeHead(401, { Location: "/login" });
-        return res.end();
-      }
+      //if (!currentUser || !currentUser.user) {
+      //  res.redirect(401, "/login");
+      //        return res.end();
+      //     }
 
       // If authenticated, proceed to the next handler
       return await handler(req, res);
