@@ -14,6 +14,13 @@ type User struct {
     ID int `json:"id"`
     Username string `json:"username"`
     Email string `json:"email"`
+    Role string `json:"role"`
+}
+
+type UserSignup struct {
+    ID int `json:"id"`
+    Username string `json:"username"`
+    Email string `json:"email"`
     Password string `json:"password"`
     Role string `json:"role"`
 }
@@ -168,7 +175,7 @@ func DeleteRecipe(id int) error {
     return nil
 }
 
-func CreateUser(user *User) error {
+func CreateUser(user *UserSignup) error {
     password := user.Password
 
     hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)

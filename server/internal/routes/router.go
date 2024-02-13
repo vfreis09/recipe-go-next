@@ -19,9 +19,15 @@ func Home(c echo.Context) error {
 
     sess, err := session.Get("session", c)
 
+    if err != nil {
+        return err    
+    }
 
-    sessionData, ok := sess.Values["user"]
-    if !ok {
+    sessionData := sess.Values["user"]
+
+    var user = &models.User{}
+    if user, ok := sessionData.(*models.User); !ok {
+        // Handle the case that it's not an expected type
         return err
     }
     response := map[string]interface{}{
@@ -111,7 +117,7 @@ func DelRecipe(c echo.Context) error {
 }
 
 func PostSignup(c echo.Context) error {
-    user := new(models.User)
+    user := new(models.UserSignup)
 
     if err := c.Bind(user); err != nil {
         return err

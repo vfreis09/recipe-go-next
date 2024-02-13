@@ -1,11 +1,15 @@
 package routes
 
 import (
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
+	"encoding/gob"
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo-contrib/session"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+	"github.com/vfreis09/recipe-go-next/internal/models"
 )
+
+type M map[string]interface{}
 
 func Start() {
     //Setting up echo 
@@ -15,6 +19,9 @@ func Start() {
 	AllowOrigins: []string{"http://localhost:3000"},
 	AllowCredentials: true,
     }))
+
+    gob.Register(&models.User{})
+    gob.Register(&M{})
 
     e.Use(session.Middleware(sessions.NewCookieStore([]byte("secret"))))
 
