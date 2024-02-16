@@ -5,10 +5,6 @@ export default function Header() {
     <div>
       <Link href="/">Home</Link>
       <Link href="/create-recipe">Create</Link>
-      <div>
-        <Link href="/login">Login</Link>
-        <Link href="/signup">Signup</Link>
-      </div>
     </div>
   );
 }

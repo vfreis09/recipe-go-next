@@ -12,19 +12,22 @@ interface RecipeData {
   categories: string;
 }
 
-//Fetch data from database
+// Fetch data from database
 export const getServerSideProps = (async () => {
-  const res = await fetch("http://localhost:4000/api/recipes");
-  const data = await res.json();
-  return { props: { data } };
-}) satisfies GetServerSideProps<{
-  data: RecipeData;
-}>;
+  try {
+    const res = await fetch("http://localhost:4000/api/recipes");
+    const data = await res.json();
+    return { props: { data } };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return { props: { data: [] } }; // Return an empty array if fetching fails
+  }
+}) as GetServerSideProps<{ data: RecipeData[] }>;
 
 export default function Home({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [dataRecipes, setDataRecipes] = useState<RecipeData[]>(data);
+  const [dataRecipes, setDataRecipes] = useState<RecipeData[]>(data || []);
 
   const deleteRecipe = async (id: number) => {
     try {
