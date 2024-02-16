@@ -1,33 +1,11 @@
 package models
 
-import "golang.org/x/crypto/bcrypt"
-
 type Recipe struct {
     ID int `json:"id"`
     Title string `json:"title"`
     Ingredients string `json:"ingredients"`
     Instructions string `json:"instructions"`
     Categories string `json:"categories"`
-}
-
-type User struct {
-    ID int `json:"id"`
-    Username string `json:"username"`
-    Email string `json:"email"`
-    Role string `json:"role"`
-}
-
-type UserSignup struct {
-    ID int `json:"id"`
-    Username string `json:"username"`
-    Email string `json:"email"`
-    Password string `json:"password"`
-    Role string `json:"role"`
-}
-
-type UserLogin struct {
-    Username string `json:"username"`
-    Password string `json:"password"`
 }
 
 func GetAllRecipes() ([]Recipe, error) {
@@ -71,7 +49,7 @@ func GetRecipeByID(id int) (Recipe, error) {
     var recipe Recipe 
 
     query := `SELECT title, ingredients, instructions, categories FROM recipes WHERE id=$1;`
-    
+
     row, err := db.Query(query, id)
 
     if err != nil {
@@ -172,40 +150,5 @@ func DeleteRecipe(id int) error {
     if err != nil {
         return err
     }
-    return nil
-}
-
-func CreateUser(user *UserSignup) error {
-    password := user.Password
-
-    hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-    if err != nil {
-        return err
-    }
-
-    query := `INSERT INTO users (username, email, password) VALUES ($1, $2, $3)`
-
-    _, err = db.Exec(query, user.Username, user.Email, hashedPassword)
-
-    if err != nil {
-        return err
-    }
-
-    return nil
-}
-
-func LoginUser(userLogin *UserLogin) error {
-    var storedPassword string
-    err := db.QueryRow("SELECT password FROM users WHERE username = $1", userLogin.Username).Scan(&storedPassword)
-
-    if err != nil {
-        return err
-    }
-
-    err = bcrypt.CompareHashAndPassword([]byte(storedPassword), []byte(userLogin.Password))
-    if err != nil {
-        return err
-    }
-    
     return nil
 }
