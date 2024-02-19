@@ -1,8 +1,7 @@
 import { useState } from "react";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-import Header from "@/components/Header";
-import Recipe from "@/components/Recipe";
-import SearchInput from "@/components/Search";
+import Header from "@/components/Header/Header";
+import Recipe from "@/components/Recipe/Recipe";
 
 interface RecipeData {
   id: number;

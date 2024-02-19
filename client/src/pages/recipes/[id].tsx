@@ -1,7 +1,6 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import Header from "@/components/Header";
-import Recipe from "@/components/Recipe";
-import SearchInput from "@/components/Search";
+import Header from "@/components/Header/Header";
+import Recipe from "@/components/Recipe/Recipe";
 
 interface Props {
   data?: any;

@@ -1,3 +1,4 @@
+import styles from "./Search.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -15,6 +16,8 @@ const SearchInput = () => {
   return (
     <form onSubmit={onSearch}>
       <input
+        placeholder="Search..."
+        className={styles.input}
         value={searchQuery}
         onChange={(event) => setSearchQuery(event.target.value)}
       />

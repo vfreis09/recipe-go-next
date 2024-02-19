@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 
 interface Recipe {
   title: string;

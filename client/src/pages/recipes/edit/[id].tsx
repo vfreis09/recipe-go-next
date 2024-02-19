@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 
 interface Recipe {
   title: string;

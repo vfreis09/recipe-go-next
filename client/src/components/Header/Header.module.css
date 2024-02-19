@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 20px;
+  margin: 20px 0px;
+  position: relative;
+  border: 1px solid #aea9a2;
+  border-radius: 30px;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  font-weight: 500;
+}
+
+.logo {
+  color: #ee6352;
+  font-weight: 700;
+}
