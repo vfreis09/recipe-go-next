@@ -1,7 +1,6 @@
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Link from "next/link";
 import Header from "@/components/Header";
-import SearchInput from "@/components/Search";
 
 interface RecipeData {
   id: number;
@@ -30,7 +29,6 @@ const SearchPage: React.FC<
   return (
     <div>
       <Header />
-      <SearchInput />
       {data.map((recipe: RecipeData) => (
         <div key={recipe.id}>
           <h2>

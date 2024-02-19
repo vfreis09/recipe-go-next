@@ -27,7 +27,6 @@ export default function GetRecipeById({
   return (
     <div>
       <Header />
-      <SearchInput />
       <Recipe key={id} {...data} />
     </div>
   );

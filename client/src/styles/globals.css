@@ -1,0 +1,55 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: #f0ebe1;
+  color: black;
+  min-height: 100vh;
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1536px) {
+  body {
+    max-width: 1366px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  body {
+    max-width: 1024px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    max-width: 768px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    max-width: 640px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    max-width: 475px;
+  }
+}
