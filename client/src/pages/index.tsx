@@ -1,7 +1,9 @@
 import { useState } from "react";
+import Image from "next/image";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Header from "@/components/Header/Header";
 import Recipe from "@/components/Recipe/Recipe";
+import styles from "../styles/Home.module.css";
 
 interface RecipeData {
   id: number;
@@ -52,6 +54,26 @@ export default function Home({
   return (
     <div>
       <Header />
+      <div className={styles.hero}>
+        <Image
+          layout="responsive"
+          width={100}
+          height={100}
+          className={styles.heroImage}
+          src="/hero_image.jpeg"
+          alt="hero image"
+        ></Image>
+        <div className={styles.heroText}>
+          <h1>UNLEASH CULINARY EXCELLENCE</h1>
+          <p>
+            Explore a world of flavors, discover handcrafted recipes, and let
+            the aroma of our passion for cooking fill your kitchen
+          </p>
+          <div>
+            <button className={styles.heroButton}>EXPLORE RECIPES</button>
+          </div>
+        </div>
+      </div>
       {recipes}
     </div>
   );
