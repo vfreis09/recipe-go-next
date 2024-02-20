@@ -14,9 +14,13 @@
   display: flex;
   gap: 20px;
   font-weight: 500;
+  flex: 1;
 }
 
 .logo {
   color: #ee6352;
   font-weight: 700;
+  font-size: 20px;
+  flex: 1;
+  display: flex;
 }
