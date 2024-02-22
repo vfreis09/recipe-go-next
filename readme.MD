@@ -17,11 +17,13 @@ Resources that I'm using in this app:
 ## Installation
 This application requires [Node.js](https://nodejs.org/), [Pnpm](https://pnpm.io/installation), [Golang](https://go.dev/) and [PostgreSQL](https://www.postgresql.org/) to run. Make sure to create an .env file to store your environment variables, create your database in PostgreSQL and to check the database/PostgreSQL code in the backend.
 
-For the environment variables in your .env file:
+## How to run
+
+
+For the environment variables (in the server folder) in your .env file:
 
 ```sh
 DB_STRING="your db string, example: postgres://MyName:MyPassword@localhost/MyDbName?sslmode=disable"
-STORE_SECRET="your store secret"
 ```
 
 Start the server:
