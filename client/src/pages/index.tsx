@@ -4,6 +4,7 @@ import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Header from "@/components/Header/Header";
 import Recipe from "@/components/Recipe/Recipe";
 import styles from "../styles/Home.module.css";
+import recipeStyles from "../components/Recipe/Recipe.module.css";
 
 interface RecipeData {
   id: number;
@@ -74,7 +75,7 @@ export default function Home({
           </div>
         </div>
       </div>
-      {recipes}
+      <div className={recipeStyles.container}>{recipes}</div>
     </div>
   );
 }

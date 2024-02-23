@@ -19,7 +19,6 @@ This application requires [Node.js](https://nodejs.org/), [Pnpm](https://pnpm.io
 
 ## How to run
 
-
 For the environment variables (in the server folder) in your .env file:
 
 ```sh
@@ -35,7 +34,7 @@ go run cmd/server/main.go
 ```
 Now the backend is running at http://localhost:4000/api/recipes
 
-For the client part:
+For the client part
 
 Install node dependencies:
 ```sh

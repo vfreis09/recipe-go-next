@@ -1,0 +1,25 @@
+.container {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+  border: 1px solid none;
+  border-radius: 30px;
+}
+
+.card {
+  overflow: hidden;
+  background-color: #fffbf2;
+  border: 1px solid none;
+  border-radius: 30px;
+}
+
+.card > button {
+  background-color: #9fdc26;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px 5px;
+}
