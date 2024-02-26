@@ -13,6 +13,9 @@ export default function Footer() {
           <Link href="/create-recipe" className={styles.links}>
             CREATE
           </Link>
+          <Link href="/create-recipe" className={styles.links}>
+            RECIPES
+          </Link>
         </div>
         <div className={styles.links}>socials</div>
       </div>

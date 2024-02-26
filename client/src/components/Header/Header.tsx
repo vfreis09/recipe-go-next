@@ -9,6 +9,7 @@ export default function Header() {
       <div className={styles.links}>
         <Link href="/">HOME</Link>
         <Link href="/create-recipe">CREATE</Link>
+        <Link href="/recipes">RECIPES</Link>
       </div>
       <SearchInput />
     </div>
