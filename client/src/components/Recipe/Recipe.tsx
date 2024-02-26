@@ -20,16 +20,16 @@ export default function Recipe(props: RecipeProp) {
   return (
     <div className={styles.card}>
       <Image
-        src="https://picsum.photos/800/400"
+        src="https://picsum.photos/700/200"
         alt="recipe_image"
-        width={800}
-        height={400}
+        width={700}
+        height={200}
       ></Image>
-      <h1>
+      <h1 className={styles.text}>
         <Link href={`/recipes/${props.id}`}>{props.title}</Link>
       </h1>
-      <p>ingredients: {props.ingredients}</p>
-      <p>category: {props.categories}</p>
+      <p className={styles.text}>ingredients: {props.ingredients}</p>
+      <p className={styles.text}>category: {props.categories}</p>
       <button onClick={() => handleDeleteClick(props.id)}>delete</button>
       <button>
         <Link href={`/recipes/edit/${props.id}`}>edit</Link>
