@@ -75,7 +75,10 @@ export default function Home({
           </div>
         </div>
       </div>
-      <div className={recipeStyles.container}>{recipes}</div>
+      <div className={recipeStyles.container}>
+        <h1>FEATURED RECIPES</h1>
+        {recipes}
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
+import styles from "../styles/Create.module.css";
 import Header from "@/components/Header/Header";
 
 interface Recipe {
@@ -64,7 +65,7 @@ const RecipeForm: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Header />
       <form onSubmit={submitRecipe}>
         <div>
@@ -79,7 +80,7 @@ const RecipeForm: React.FC = () => {
         </div>
         <div>
           <label htmlFor="ingredients">Ingredients:</label>
-          <textarea
+          <input
             id="ingredients"
             name="ingredients"
             value={recipe.ingredients}
@@ -88,7 +89,7 @@ const RecipeForm: React.FC = () => {
         </div>
         <div>
           <label htmlFor="instructions">Instructions:</label>
-          <textarea
+          <input
             id="instructions"
             name="instructions"
             value={recipe.instructions}
