@@ -5,6 +5,7 @@ import Header from "@/components/Header/Header";
 import Recipe from "@/components/Recipe/Recipe";
 import styles from "../styles/Home.module.css";
 import recipeStyles from "../components/Recipe/Recipe.module.css";
+import Footer from "@/components/Footer/Footer";
 
 interface RecipeData {
   id: number;
@@ -75,10 +76,12 @@ export default function Home({
           </div>
         </div>
       </div>
+      <div>categories</div>
       <div className={recipeStyles.container}>
         <h1>FEATURED RECIPES</h1>
         {recipes}
       </div>
+      <Footer />
     </div>
   );
 }

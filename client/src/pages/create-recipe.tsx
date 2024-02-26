@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import styles from "../styles/Create.module.css";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 interface Recipe {
   title: string;
@@ -171,6 +172,7 @@ const RecipeForm: React.FC = () => {
         </div>
         <button type="submit">Submit Recipe</button>
       </form>
+      <Footer />
     </div>
   );
 };

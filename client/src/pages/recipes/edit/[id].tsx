@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 interface Recipe {
   title: string;
@@ -201,6 +202,7 @@ export default function EditForm({
         </div>
         <button type="submit">Submit Recipe</button>
       </form>
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Link from "next/link";
 import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 interface RecipeData {
   id: number;
@@ -39,6 +40,7 @@ const SearchPage: React.FC<
           <p>Categories: {recipe.categories}</p>
         </div>
       ))}
+      <Footer />
     </div>
   );
 };

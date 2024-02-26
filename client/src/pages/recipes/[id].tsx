@@ -1,6 +1,7 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Header from "@/components/Header/Header";
 import Recipe from "@/components/Recipe/Recipe";
+import Footer from "@/components/Footer/Footer";
 
 interface Props {
   data?: any;
@@ -27,6 +28,7 @@ export default function GetRecipeById({
     <div>
       <Header />
       <Recipe key={id} {...data} />
+      <Footer />
     </div>
   );
 }
