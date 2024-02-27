@@ -2,6 +2,7 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import styles from "../../../styles/Create.module.css";
 
 interface Recipe {
   title: string;
@@ -91,117 +92,122 @@ export default function EditForm({
   return (
     <div>
       <Header />
-      <form onSubmit={submitRecipe}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={updatedRecipe.title}
-            onChange={updateRecipe}
-          />
-        </div>
-        <div>
-          <label htmlFor="ingredients">Ingredients:</label>
-          <textarea
-            id="ingredients"
-            name="ingredients"
-            value={updatedRecipe.ingredients}
-            onChange={updateRecipe}
-          />
-        </div>
-        <div>
-          <label htmlFor="instructions">Instructions:</label>
-          <textarea
-            id="instructions"
-            name="instructions"
-            value={updatedRecipe.instructions}
-            onChange={updateRecipe}
-          />
-        </div>
-        <div>
-          Category:
-          <label>
+      <div className={styles.container}>
+        <form onSubmit={submitRecipe}>
+          <div>
+            <label htmlFor="title">Title:</label>
             <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="breakfast"
-              checked={updatedRecipe.categories === "breakfast"}
+              className={styles.titleInput}
+              type="text"
+              id="title"
+              name="title"
+              value={updatedRecipe.title}
               onChange={updateRecipe}
             />
-            Breakfast
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="appetizer"
-              checked={updatedRecipe.categories === "appetizer"}
+          </div>
+          <div>
+            <label htmlFor="ingredients">Ingredients:</label>
+            <textarea
+              className={styles.textArea}
+              id="ingredients"
+              name="ingredients"
+              value={updatedRecipe.ingredients}
               onChange={updateRecipe}
             />
-            Appetizer
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="salad"
-              checked={updatedRecipe.categories === "salad"}
+          </div>
+          <div>
+            <label htmlFor="instructions">Instructions:</label>
+            <textarea
+              className={styles.textArea}
+              id="instructions"
+              name="instructions"
+              value={updatedRecipe.instructions}
               onChange={updateRecipe}
             />
-            Salad
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="main-course"
-              checked={updatedRecipe.categories === "main-course"}
-              onChange={updateRecipe}
-            />
-            Main-course
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="side-dish"
-              checked={updatedRecipe.categories === "side-dish"}
-              onChange={updateRecipe}
-            />
-            Side-dish
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="baked-goods"
-              checked={updatedRecipe.categories === "baked-goods"}
-              onChange={updateRecipe}
-            />
-            Baked-goods
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="dessert"
-              checked={updatedRecipe.categories === "dessert"}
-              onChange={updateRecipe}
-            />
-            Dessert
-          </label>
-        </div>
-        <button type="submit">Submit Recipe</button>
-      </form>
+          </div>
+          <div>
+            Category:
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="breakfast"
+                checked={updatedRecipe.categories === "breakfast"}
+                onChange={updateRecipe}
+              />
+              Breakfast
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="appetizer"
+                checked={updatedRecipe.categories === "appetizer"}
+                onChange={updateRecipe}
+              />
+              Appetizer
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="salad"
+                checked={updatedRecipe.categories === "salad"}
+                onChange={updateRecipe}
+              />
+              Salad
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="main-course"
+                checked={updatedRecipe.categories === "main-course"}
+                onChange={updateRecipe}
+              />
+              Main-course
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="side-dish"
+                checked={updatedRecipe.categories === "side-dish"}
+                onChange={updateRecipe}
+              />
+              Side-dish
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="baked-goods"
+                checked={updatedRecipe.categories === "baked-goods"}
+                onChange={updateRecipe}
+              />
+              Baked-goods
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="dessert"
+                checked={updatedRecipe.categories === "dessert"}
+                onChange={updateRecipe}
+              />
+              Dessert
+            </label>
+          </div>
+          <button type="submit">Submit Recipe</button>
+        </form>
+      </div>
       <Footer />
     </div>
   );

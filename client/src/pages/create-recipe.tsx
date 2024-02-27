@@ -66,112 +66,117 @@ const RecipeForm: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <Header />
-      <form onSubmit={submitRecipe}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={recipe.title}
-            onChange={updateRecipe}
-          />
-        </div>
-        <div>
-          <label htmlFor="ingredients">Ingredients:</label>
-          <input
-            id="ingredients"
-            name="ingredients"
-            value={recipe.ingredients}
-            onChange={updateRecipe}
-          />
-        </div>
-        <div>
-          <label htmlFor="instructions">Instructions:</label>
-          <input
-            id="instructions"
-            name="instructions"
-            value={recipe.instructions}
-            onChange={updateRecipe}
-          />
-        </div>
-        <div>
-          Category:
-          <label>
+      <div className={styles.container}>
+        <form onSubmit={submitRecipe}>
+          <div>
+            <label htmlFor="title">Title:</label>
             <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="breakfast"
+              className={styles.titleInput}
+              type="text"
+              id="title"
+              name="title"
+              value={recipe.title}
               onChange={updateRecipe}
             />
-            Breakfast
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="appetizer"
+          </div>
+          <div>
+            <label htmlFor="ingredients">Ingredients:</label>
+            <textarea
+              className={styles.textArea}
+              id="ingredients"
+              name="ingredients"
+              value={recipe.ingredients}
               onChange={updateRecipe}
             />
-            Appetizer
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="salad"
+          </div>
+          <div>
+            <label htmlFor="instructions">Instructions:</label>
+            <textarea
+              className={styles.textArea}
+              id="instructions"
+              name="instructions"
+              value={recipe.instructions}
               onChange={updateRecipe}
             />
-            Salad
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="main-course"
-              onChange={updateRecipe}
-            />
-            Main-course
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="side-dish"
-              onChange={updateRecipe}
-            />
-            Side-dish
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="baked-goods"
-              onChange={updateRecipe}
-            />
-            Baked-goods
-          </label>
-          <label>
-            <input
-              id="categories"
-              name="categories"
-              type="radio"
-              value="dessert"
-              onChange={updateRecipe}
-            />
-            Dessert
-          </label>
-        </div>
-        <button type="submit">Submit Recipe</button>
-      </form>
+          </div>
+          <div>
+            Category:
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="breakfast"
+                onChange={updateRecipe}
+              />
+              Breakfast
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="appetizer"
+                onChange={updateRecipe}
+              />
+              Appetizer
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="salad"
+                onChange={updateRecipe}
+              />
+              Salad
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="main-course"
+                onChange={updateRecipe}
+              />
+              Main-course
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="side-dish"
+                onChange={updateRecipe}
+              />
+              Side-dish
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="baked-goods"
+                onChange={updateRecipe}
+              />
+              Baked-goods
+            </label>
+            <label>
+              <input
+                id="categories"
+                name="categories"
+                type="radio"
+                value="dessert"
+                onChange={updateRecipe}
+              />
+              Dessert
+            </label>
+          </div>
+          <button type="submit">Submit Recipe</button>
+        </form>
+      </div>
       <Footer />
     </div>
   );
