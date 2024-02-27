@@ -1,6 +1,7 @@
 import styles from "./Search.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface ModalState {
   isOpen: boolean;
@@ -25,7 +26,15 @@ const SearchInput = () => {
 
   return (
     <div>
-      <button onClick={toggleModal}>Search</button>
+      <button className={styles.searchLogoButton} onClick={toggleModal}>
+        <Image
+          className={styles.searchLogoImage}
+          src="/search.png"
+          alt="search-logo"
+          width={30}
+          height={30}
+        ></Image>
+      </button>
       {modalState.isOpen && (
         <div className={styles.modal}>
           <div className={styles.modalContent}>

@@ -5,11 +5,10 @@ export default function Footer() {
   return (
     <div className={styles.container}>
       <div className={styles.linkContainer}>
-        <p className={styles.logo}>recipegonext</p>
+        <Link href="/" className={styles.logo}>
+          recipegonext
+        </Link>
         <div>
-          <Link href="/" className={styles.links}>
-            HOME
-          </Link>
           <Link href="/create-recipe" className={styles.links}>
             CREATE
           </Link>
