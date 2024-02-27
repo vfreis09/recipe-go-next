@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   padding: 80px;
-  background-color: white;
+  background-color: #262522;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation-name: modalAppear;
   animation-duration: 0.4s;
@@ -25,9 +25,11 @@
 }
 
 .input {
+  color: white;
+  background-color: #494743;
   width: 100%;
   padding: 10px 14px;
-  border: 1px solid #ccc;
+  border: 1px solid #494743;
   border-radius: 20px;
   font-size: 16px;
 }
@@ -42,9 +44,13 @@
 }
 
 .closeButton {
-  color: #aaa;
+  background-color: #262522;
+  color: white;
   font-size: 28px;
   font-weight: bold;
+  border: 1px solid #262522;
+  border-radius: 30px;
+  padding: 10px;
 }
 
 .closeButton:hover,
