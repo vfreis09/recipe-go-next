@@ -11,7 +11,6 @@ const SearchInput = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [modalState, setModalState] = useState<ModalState>({ isOpen: false });
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const modal = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
 
@@ -32,18 +31,6 @@ const SearchInput = () => {
     }
   }, [modalState.isOpen]);
 
-  //code below not working
-  const handleOutsideClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (!modal.current) {
-      return;
-    } // Do nothing if modal is not mounted
-
-    const target = event.target as Node;
-    if (target instanceof Node && !modal.current.contains(target)) {
-      toggleModal();
-    }
-  };
-
   return (
     <div>
       <button className={styles.searchLogoButton} onClick={toggleModal}>
@@ -56,7 +43,7 @@ const SearchInput = () => {
         ></Image>
       </button>
       {modalState.isOpen && (
-        <div className={styles.modal} ref={modal}>
+        <div className={styles.modal}>
           <div className={styles.modalContent}>
             <form onSubmit={onSearch}>
               <input
@@ -73,7 +60,6 @@ const SearchInput = () => {
           </div>
         </div>
       )}
-      <div onClick={handleOutsideClick} ref={modal} />
     </div>
   );
 };
