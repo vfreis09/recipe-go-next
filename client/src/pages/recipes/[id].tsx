@@ -24,6 +24,23 @@ export default function GetRecipeById({
   data,
   id,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const deleteRecipe = async (id: number) => {
+    try {
+      await fetch(`http://localhost:4000/api/recipes/${id}`, {
+        method: "DELETE",
+      });
+
+      //Update state
+      //const updatedRecipes = dataRecipes.filter(
+      //(myRecipe) => myRecipe.id !== id
+      //);
+
+      //setDataRecipes(updatedRecipes);
+    } catch (error) {
+      console.error("Error deleting recipe:", error);
+    }
+  };
+
   return (
     <div>
       <Header />

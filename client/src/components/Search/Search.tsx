@@ -1,5 +1,5 @@
 import styles from "./Search.module.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -10,6 +10,8 @@ interface ModalState {
 const SearchInput = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [modalState, setModalState] = useState<ModalState>({ isOpen: false });
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const modal = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
 
@@ -24,6 +26,24 @@ const SearchInput = () => {
     router.push(`/search?q=${encodedSearchQuery}`);
   };
 
+  useEffect(() => {
+    if (modalState.isOpen && searchInputRef.current) {
+      searchInputRef.current.focus(); // Set focus on input field
+    }
+  }, [modalState.isOpen]);
+
+  //code below not working
+  const handleOutsideClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!modal.current) {
+      return;
+    } // Do nothing if modal is not mounted
+
+    const target = event.target as Node;
+    if (target instanceof Node && !modal.current.contains(target)) {
+      toggleModal();
+    }
+  };
+
   return (
     <div>
       <button className={styles.searchLogoButton} onClick={toggleModal}>
@@ -36,7 +56,7 @@ const SearchInput = () => {
         ></Image>
       </button>
       {modalState.isOpen && (
-        <div className={styles.modal}>
+        <div className={styles.modal} ref={modal}>
           <div className={styles.modalContent}>
             <form onSubmit={onSearch}>
               <input
@@ -44,6 +64,7 @@ const SearchInput = () => {
                 className={styles.input}
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
+                ref={searchInputRef}
               />
             </form>
             <button className={styles.closeButton} onClick={toggleModal}>
@@ -52,6 +73,7 @@ const SearchInput = () => {
           </div>
         </div>
       )}
+      <div onClick={handleOutsideClick} ref={modal} />
     </div>
   );
 };
