@@ -2,9 +2,8 @@ import { useState } from "react";
 import Image from "next/image";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Header from "@/components/Header/Header";
-import Recipe from "@/components/Recipe/Recipe";
+import Card from "@/components/Card/Card";
 import styles from "../styles/Home.module.css";
-import recipeStyles from "../components/Recipe/Recipe.module.css";
 import Footer from "@/components/Footer/Footer";
 
 interface RecipeData {
@@ -48,9 +47,9 @@ export default function Home({
       console.error("Error deleting recipe:", error);
     }
   };
-  //Loop on the recipe api and send it to the recipe component as props
-  const recipes = dataRecipes.map((recipe: RecipeData) => {
-    return <Recipe key={recipe.id} onDelete={deleteRecipe} {...recipe} />;
+  //Loop on the recipe api and send it to the card component as props
+  const cards = dataRecipes.map((recipe: RecipeData) => {
+    return <Card key={recipe.id} {...recipe} />;
   });
 
   return (
@@ -77,9 +76,9 @@ export default function Home({
         </div>
       </div>
       <div>categories</div>
-      <div className={recipeStyles.container}>
+      <div className={styles.cardContainer}>
         <h1>FEATURED RECIPES</h1>
-        {recipes}
+        {cards}
       </div>
       <Footer />
     </div>

@@ -1,0 +1,15 @@
+.card {
+  overflow: hidden;
+  background-color: #fffbf2;
+  border: 1px solid none;
+  border-radius: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  width: 48%;
+  height: auto;
+}
+
+.text {
+  padding: 20px;
+}
