@@ -2,11 +2,7 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Header from "@/components/Header/Header";
 import Recipe from "@/components/Recipe/Recipe";
 import Footer from "@/components/Footer/Footer";
-
-interface Props {
-  data?: any;
-  id?: any;
-}
+import type { Props } from "@/types/types";
 
 //Fetch data from database
 export const getServerSideProps: GetServerSideProps<Props> = async (

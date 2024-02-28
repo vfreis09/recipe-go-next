@@ -3,17 +3,9 @@ import Image from "next/image";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Header from "@/components/Header/Header";
 import Card from "@/components/Card/Card";
-import styles from "../styles/Home.module.css";
 import Footer from "@/components/Footer/Footer";
-
-interface RecipeData {
-  id: number;
-  title: string;
-  description: string;
-  ingredients: string;
-  instructions: string;
-  categories: string;
-}
+import type { RecipeID } from "@/types/types";
+import styles from "../styles/Home.module.css";
 
 // Fetch data from database
 export const getServerSideProps = (async () => {
@@ -25,12 +17,12 @@ export const getServerSideProps = (async () => {
     console.error("Error fetching data:", error);
     return { props: { data: [] } }; // Return an empty array if fetching fails
   }
-}) as GetServerSideProps<{ data: RecipeData[] }>;
+}) as GetServerSideProps<{ data: RecipeID[] }>;
 
 export default function Home({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [dataRecipes, setDataRecipes] = useState<RecipeData[]>(data || []);
+  const [dataRecipes, setDataRecipes] = useState<RecipeID[]>(data || []);
 
   const deleteRecipe = async (id: number) => {
     try {
@@ -49,7 +41,7 @@ export default function Home({
     }
   };
   //Loop on the recipe api and send it to the card component as props
-  const cards = dataRecipes.map((recipe: RecipeData) => {
+  const cards = dataRecipes.map((recipe: RecipeID) => {
     return <Card key={recipe.id} {...recipe} />;
   });
 

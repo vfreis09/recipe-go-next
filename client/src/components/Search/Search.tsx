@@ -2,10 +2,7 @@ import styles from "./Search.module.css";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-
-interface ModalState {
-  isOpen: boolean;
-}
+import type { ModalState } from "@/types/types";
 
 const SearchInput = () => {
   const [searchQuery, setSearchQuery] = useState("");

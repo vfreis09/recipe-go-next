@@ -1,15 +1,8 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import styles from "../styles/Create.module.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-
-interface Recipe {
-  title: string;
-  description: string;
-  ingredients: string;
-  instructions: string;
-  categories: string;
-}
+import type { Recipe } from "@/types/types";
+import styles from "../styles/Create.module.css";
 
 const RecipeForm: React.FC = () => {
   const [recipe, setRecipe] = useState<Recipe>({

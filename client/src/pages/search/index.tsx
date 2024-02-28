@@ -2,22 +2,14 @@ import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Link from "next/link";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-
-interface RecipeData {
-  id: number;
-  title: string;
-  description: string;
-  ingredients: string;
-  instructions: string;
-  categories: string;
-}
+import type { RecipeID } from "@/types/types";
 
 // Fetch data from database
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await fetch(
     `http://localhost:4000/api/search?q=${context.query.q}`
   );
-  const data: RecipeData[] = await res.json();
+  const data: RecipeID[] = await res.json();
   return { props: { data } };
 };
 
@@ -31,7 +23,7 @@ const SearchPage: React.FC<
   return (
     <div>
       <Header />
-      {data.map((recipe: RecipeData) => (
+      {data.map((recipe: RecipeID) => (
         <div key={recipe.id}>
           <h2>
             <Link href={`/recipes/${recipe.id}`}>{recipe.title}</Link>

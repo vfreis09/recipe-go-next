@@ -1,16 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { RecipeProp } from "@/types/types";
 import styles from "./Recipe.module.css";
-
-interface RecipeProp {
-  id: number;
-  title: string;
-  description: string;
-  ingredients: string;
-  instructions: string;
-  categories: string;
-  onDelete: (id: number) => void;
-}
 
 export default function Recipe(props: RecipeProp) {
   const handleDeleteClick = (id: number) => {

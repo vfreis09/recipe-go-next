@@ -2,20 +2,8 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import type { Recipe, Props } from "@/types/types";
 import styles from "../../../styles/Create.module.css";
-
-interface Recipe {
-  title: string;
-  description: string;
-  ingredients: string;
-  instructions: string;
-  categories: string;
-}
-
-interface Props {
-  data?: any;
-  id?: any;
-}
 
 //Fetch data from database
 export const getServerSideProps: GetServerSideProps<Props> = async (

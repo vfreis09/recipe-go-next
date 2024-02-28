@@ -1,17 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { RecipeID } from "@/types/types";
 import styles from "./Card.module.css";
 
-interface CardProp {
-  id: number;
-  title: string;
-  description: string;
-  ingredients: string;
-  instructions: string;
-  categories: string;
-}
-
-export default function Card(props: CardProp) {
+export default function Card(props: RecipeID) {
   return (
     <div className={styles.card}>
       <Image
