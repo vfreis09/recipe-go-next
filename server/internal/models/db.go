@@ -32,6 +32,7 @@ func Init() {
     query := `CREATE TABLE IF NOT EXISTS recipes(
         ID SERIAL PRIMARY KEY, 
         title VARCHAR(64) NOT NULL, 
+	description TEXT NOT NULL,
         ingredients TEXT NOT NULL,
         instructions TEXT NOT NULL,
         categories VARCHAR(12) NOT NULL,

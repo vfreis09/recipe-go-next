@@ -9,6 +9,7 @@ import Footer from "@/components/Footer/Footer";
 interface RecipeData {
   id: number;
   title: string;
+  description: string;
   ingredients: string;
   instructions: string;
   categories: string;

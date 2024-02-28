@@ -6,6 +6,7 @@ import Footer from "@/components/Footer/Footer";
 interface RecipeData {
   id: number;
   title: string;
+  description: string;
   ingredients: string;
   instructions: string;
   categories: string;
@@ -35,9 +36,16 @@ const SearchPage: React.FC<
           <h2>
             <Link href={`/recipes/${recipe.id}`}>{recipe.title}</Link>
           </h2>
-          <p>Ingredients: {recipe.ingredients}</p>
-          <p>Instructions: {recipe.instructions}</p>
-          <p>Categories: {recipe.categories}</p>
+          <p>{recipe.description}</p>
+          <p>
+            <b>Ingredients:</b> {recipe.ingredients}
+          </p>
+          <p>
+            <b>Instructions:</b> {recipe.instructions}
+          </p>
+          <p>
+            <b>Categories:</b> {recipe.categories}
+          </p>
         </div>
       ))}
       <Footer />

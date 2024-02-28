@@ -6,6 +6,7 @@ import styles from "../../../styles/Create.module.css";
 
 interface Recipe {
   title: string;
+  description: string;
   ingredients: string;
   instructions: string;
   categories: string;
@@ -34,6 +35,7 @@ export default function EditForm({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [updatedRecipe, setUpdatedRecipe] = useState<Recipe>({
     title: data.title,
+    description: data.description,
     ingredients: data.ingredients,
     instructions: data.instructions,
     categories: data.categories,
@@ -54,6 +56,7 @@ export default function EditForm({
 
     if (
       updatedRecipe.title &&
+      updatedRecipe.description &&
       updatedRecipe.ingredients &&
       updatedRecipe.instructions &&
       updatedRecipe.categories
@@ -76,6 +79,7 @@ export default function EditForm({
           // reset the form after a successful submission
           setUpdatedRecipe({
             title: "",
+            description: "",
             ingredients: "",
             instructions: "",
             categories: "",
@@ -102,6 +106,16 @@ export default function EditForm({
               id="title"
               name="title"
               value={updatedRecipe.title}
+              onChange={updateRecipe}
+            />
+          </div>
+          <div>
+            <label htmlFor="description">Description:</label>
+            <textarea
+              className={styles.textArea}
+              id="description"
+              name="description"
+              value={updatedRecipe.description}
               onChange={updateRecipe}
             />
           </div>

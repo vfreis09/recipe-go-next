@@ -5,6 +5,7 @@ import Footer from "@/components/Footer/Footer";
 
 interface Recipe {
   title: string;
+  description: string;
   ingredients: string;
   instructions: string;
   categories: string;
@@ -13,6 +14,7 @@ interface Recipe {
 const RecipeForm: React.FC = () => {
   const [recipe, setRecipe] = useState<Recipe>({
     title: "",
+    description: "",
     ingredients: "",
     instructions: "",
     categories: "",
@@ -33,7 +35,8 @@ const RecipeForm: React.FC = () => {
 
     if (
       recipe.title &&
-      recipe.title &&
+      recipe.description &&
+      recipe.ingredients &&
       recipe.instructions &&
       recipe.categories
     ) {
@@ -52,12 +55,11 @@ const RecipeForm: React.FC = () => {
           // reset the form after a successful submission
           setRecipe({
             title: "",
+            description: "",
             ingredients: "",
             instructions: "",
             categories: "",
           });
-        } else {
-          console.error("API Error:", response.status);
         }
       } catch (error) {
         console.error("API Error:", error);
@@ -78,6 +80,16 @@ const RecipeForm: React.FC = () => {
               id="title"
               name="title"
               value={recipe.title}
+              onChange={updateRecipe}
+            />
+          </div>
+          <div>
+            <label htmlFor="description">Description:</label>
+            <textarea
+              className={styles.textArea}
+              id="description"
+              name="description"
+              value={recipe.description}
               onChange={updateRecipe}
             />
           </div>
