@@ -68,18 +68,56 @@ export default function Home({
           </Link>
         </div>
         <div className={styles.logoContainer}>
-          <button>logo</button>
-          <p>BREAKFAST</p>
-          <button>logo</button>
-          <p>APPETIZER</p>
-          <button>logo</button>
-          <p>SALAD</p>
-          <button>logo</button>
-          <p>MAIN-COURSE</p>
-          <button>logo</button>
-          <p>BAKED-GOODS</p>
-          <button>logo</button>
-          <p>DESSERT</p>
+          <div className={styles.otherLogoContainer}>
+            <Image
+              src="/breakfast.png"
+              alt="breakfast-image"
+              width={50}
+              height={50}
+            ></Image>
+            <p>BREAKFAST</p>
+          </div>
+          <hr />
+          <div className={styles.otherLogoContainer}>
+            <Image
+              src="/salad.png"
+              alt="salad-image"
+              width={50}
+              height={50}
+            ></Image>
+            <p>SALAD</p>
+          </div>
+          <hr />
+          <div className={styles.otherLogoContainer}>
+            <Image
+              src="/mainCourse.png"
+              alt="main-course-image"
+              width={50}
+              height={50}
+            ></Image>
+            <p>MAIN-COURSE</p>
+          </div>
+          <hr />
+          <div className={styles.otherLogoContainer}>
+            <Image
+              src="/bakedGoods.png"
+              alt="baked-goods-image"
+              width={50}
+              height={50}
+            ></Image>
+            <p>BAKED-GOODS</p>
+          </div>
+          <hr />
+          <div className={styles.otherLogoContainer}>
+            <Image
+              src="/dessert.png"
+              alt="dessert-image"
+              width={50}
+              height={50}
+            ></Image>
+            <p>DESSERT</p>
+          </div>
+          <hr />
         </div>
       </div>
       <div className={styles.cardContainer}>

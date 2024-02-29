@@ -48,7 +48,7 @@
   border: 1px solid none;
   border-radius: 30px;
   margin-top: 15px;
-  height: 520px;
+  height: 560px;
 }
 
 .textCategoryContainer {
@@ -81,6 +81,29 @@
 
 .logoContainer {
   width: 100%;
+  padding-top: 40px;
+  padding-right: 30px;
+}
+
+.logoContainer > hr {
+  border: 0;
+  border-top: 1px solid #abc6d9;
+}
+
+.otherLogoContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 26px;
+  margin-bottom: 5px;
+}
+
+.otherLogoContainer > p {
+  font-weight: 500;
+}
+
+.otherLogoContainer > img {
+  margin-bottom: 10px;
 }
 
 .cardContainer {
