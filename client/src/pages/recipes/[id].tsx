@@ -40,7 +40,7 @@ export default function GetRecipeById({
   return (
     <div>
       <Header />
-      <Recipe key={id} {...data} />
+      <Recipe key={id} onDelete={deleteRecipe} {...data} />
       <Footer />
     </div>
   );

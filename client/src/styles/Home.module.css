@@ -42,6 +42,47 @@
   cursor: pointer;
 }
 
+.categoriesContainer {
+  display: flex;
+  background-color: #c4e5fc;
+  border: 1px solid none;
+  border-radius: 30px;
+  margin-top: 15px;
+  height: 520px;
+}
+
+.textCategoryContainer {
+  max-width: 680px;
+  margin-left: 40px;
+}
+
+.textCategoryContainer > h1 {
+  padding-top: 260px;
+  padding-right: 400px;
+}
+
+.textCategoryContainer > p {
+  color: #464b4e;
+  padding-right: 120px;
+  margin-top: 15px;
+}
+
+.textCategoryButton {
+  background-color: #c4e5fc;
+  margin-top: 40px;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 30px;
+}
+
+.textCategoryButton:hover {
+  cursor: pointer;
+}
+
+.logoContainer {
+  width: 100%;
+}
+
 .cardContainer {
   margin-top: 15px;
   display: flex;

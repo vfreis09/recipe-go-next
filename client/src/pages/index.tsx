@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import Header from "@/components/Header/Header";
 import Card from "@/components/Card/Card";
@@ -24,22 +25,6 @@ export default function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [dataRecipes, setDataRecipes] = useState<RecipeID[]>(data || []);
 
-  const deleteRecipe = async (id: number) => {
-    try {
-      await fetch(`http://localhost:4000/api/recipes/${id}`, {
-        method: "DELETE",
-      });
-
-      //Update state
-      const updatedRecipes = dataRecipes.filter(
-        (myRecipe) => myRecipe.id !== id
-      );
-
-      setDataRecipes(updatedRecipes);
-    } catch (error) {
-      console.error("Error deleting recipe:", error);
-    }
-  };
   //Loop on the recipe api and send it to the card component as props
   const cards = dataRecipes.map((recipe: RecipeID) => {
     return <Card key={recipe.id} {...recipe} />;
@@ -64,11 +49,39 @@ export default function Home({
             the aroma of our passion for cooking fill your kitchen
           </p>
           <div>
-            <button className={styles.heroButton}>EXPLORE RECIPES</button>
+            <Link href="/recipes">
+              <button className={styles.heroButton}>EXPLORE RECIPES</button>
+            </Link>
           </div>
         </div>
       </div>
-      <div>categories</div>
+      <div className={styles.categoriesContainer}>
+        <div className={styles.textCategoryContainer}>
+          <h1>OUR DIVERSE PALETTE</h1>
+          <p>
+            If you are a breakfast enthusiast, a connoisseur of savory delights,
+            or on the lookout for irresistible desserts, our curated selection
+            has something to satisfy every palate.
+          </p>
+          <Link href="/recipes">
+            <button className={styles.textCategoryButton}>SEE MORE</button>
+          </Link>
+        </div>
+        <div className={styles.logoContainer}>
+          <button>logo</button>
+          <p>BREAKFAST</p>
+          <button>logo</button>
+          <p>APPETIZER</p>
+          <button>logo</button>
+          <p>SALAD</p>
+          <button>logo</button>
+          <p>MAIN-COURSE</p>
+          <button>logo</button>
+          <p>BAKED-GOODS</p>
+          <button>logo</button>
+          <p>DESSERT</p>
+        </div>
+      </div>
       <div className={styles.cardContainer}>
         <h1>FEATURED RECIPES</h1>
         {cards}
