@@ -30,6 +30,6 @@ export interface ModalState {
 }
 
 export interface Props {
-  data?: any;
-  id?: any;
+  data?: Recipe[];
+  id?: string | string[];
 }

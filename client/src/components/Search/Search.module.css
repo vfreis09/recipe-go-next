@@ -62,8 +62,13 @@
 }
 
 .searchLogoButton {
-  background-color: none;
+  cursor: pointer;
+  background-color: #f0ebe1;
   border: none;
+}
+
+.searchLogoButton:hover {
+  background-color: #f0ebe1;
 }
 
 .searchLogoImage {
