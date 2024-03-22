@@ -28,15 +28,6 @@ export default function RecipesPage({
     setSelectedType(type);
   };
 
-  function handler() {
-    //filter function on the buttons
-    console.log("ello");
-  }
-
-  const cards = dataRecipes.map((recipe: RecipeID) => {
-    return <Card key={recipe.id} {...recipe} />;
-  });
-
   return (
     <div className={styles.pageContainer}>
       <Header />
@@ -120,7 +111,16 @@ export default function RecipesPage({
             dessert
           </button>
         </div>
-        <div className={styles.cardContainer}>{cards}</div>
+        <div className={styles.cardContainer}>
+          {dataRecipes
+            .filter(
+              (card) =>
+                selectedType === null || card.categories === selectedType
+            )
+            .map((card) => (
+              <Card key={card.id} {...card} />
+            ))}
+        </div>
       </div>
       <Footer />
     </div>
