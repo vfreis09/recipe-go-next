@@ -22,3 +22,18 @@
   resize: vertical;
   min-height: 200px;
 }
+
+.submitButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.submitButton:hover {
+  background-color: #45a049;
+}

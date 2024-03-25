@@ -29,6 +29,8 @@ export default function EditForm({
     categories: data.categories,
   });
 
+  console.log(data);
+
   const updateRecipe = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -207,7 +209,9 @@ export default function EditForm({
               Dessert
             </label>
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" className={styles.submitButton}>
+            Submit
+          </button>
         </form>
       </div>
       <Footer />

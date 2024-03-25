@@ -179,7 +179,9 @@ const RecipeForm: React.FC = () => {
               Dessert
             </label>
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" className={styles.submitButton}>
+            Submit
+          </button>
         </form>
       </div>
       <Footer />
