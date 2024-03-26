@@ -16,9 +16,9 @@ export default function Card(props: RecipeID) {
         <Link href={`/recipes/${props.id}`}>{props.title}</Link>
       </h1>
       <p className={styles.text}>{props.description}</p>
-      <p className={styles.text}>
-        <b>category:</b> {props.categories}
-      </p>
+      <Link href={`/search?q=${props.categories}`} className={styles.text}>
+        {props.categories}
+      </Link>
     </div>
   );
 }

@@ -29,8 +29,6 @@ export default function EditForm({
     categories: data.categories,
   });
 
-  console.log(data);
-
   const updateRecipe = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
