@@ -11,9 +11,11 @@ export default function Recipe(props: RecipeProp) {
 
   return (
     <div className={styles.card}>
-      <Link href={`/search?q=${props.categories}`} className={styles.category}>
-        {props.categories}
-      </Link>
+      <div className={styles.categoryContainer}>
+        <button className={styles.category}>
+          <Link href={`/search?q=${props.categories}`}>{props.categories}</Link>
+        </button>
+      </div>
       <h1 className={styles.title}>
         <Link href={`/recipes/${props.id}`}>{props.title}</Link>
       </h1>

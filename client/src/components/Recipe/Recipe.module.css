@@ -1,5 +1,21 @@
+.categoryContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
 .category {
-  text-align: center;
+  color: white;
+  background-color: #ee6352;
+  margin: 40px 10px 0px 0px;
+  padding: 10px 20px;
+  border: 1px solid #ee6352;
+  border-radius: 30px;
+  font-size: 18px;
+}
+
+.category:hover {
+  cursor: pointer;
 }
 
 .title {
