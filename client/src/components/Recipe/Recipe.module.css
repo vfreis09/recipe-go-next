@@ -20,7 +20,31 @@
 
 .title {
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .text {
+  margin-bottom: 30px;
+}
+
+.image {
+  border: 1px none;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.button:hover {
+  background-color: #45a049;
 }

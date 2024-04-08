@@ -20,21 +20,26 @@ export default function Recipe(props: RecipeProp) {
         <Link href={`/recipes/${props.id}`}>{props.title}</Link>
       </h1>
       <Image
-        src="https://picsum.photos/700/200"
+        className={styles.image}
+        src="https://picsum.photos/1350/500"
         alt="recipe_image"
-        width={700}
-        height={200}
+        width={1350}
+        height={500}
       ></Image>
       <p className={styles.text}>{props.description}</p>
       <h2>Ingredients</h2>
       <p className={styles.text}>{props.ingredients}</p>
       <h2>Instructions</h2>
       <p className={styles.text}>{props.instructions}</p>
-      <button onClick={() => handleDeleteClick(props.id)}>delete</button>
-      <button>
+      <button
+        className={styles.button}
+        onClick={() => handleDeleteClick(props.id)}
+      >
+        delete
+      </button>
+      <button className={styles.button}>
         <Link href={`/recipes/edit/${props.id}`}>edit</Link>
       </button>
-      <h1>similar recipes</h1>
     </div>
   );
 }
