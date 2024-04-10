@@ -3,6 +3,7 @@ import Link from "next/link";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import type { RecipeID } from "@/types/types";
+import styles from "../../styles/SearchPage.module.css";
 
 // Fetch data from database
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -21,25 +22,21 @@ const SearchPage: React.FC<
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <Header />
-      {data.map((recipe: RecipeID) => (
-        <div key={recipe.id}>
-          <h2>
-            <Link href={`/recipes/${recipe.id}`}>{recipe.title}</Link>
-          </h2>
-          <p>{recipe.description}</p>
-          <p>
-            <b>Ingredients:</b> {recipe.ingredients}
-          </p>
-          <p>
-            <b>Instructions:</b> {recipe.instructions}
-          </p>
-          <p>
-            <b>Categories:</b> {recipe.categories}
-          </p>
-        </div>
-      ))}
+      <div className={styles.recipeContainer}>
+        {data.map((recipe: RecipeID) => (
+          <div key={recipe.id} className={styles.searchCard}>
+            <h2 className={styles.title}>
+              <Link href={`/recipes/${recipe.id}`}>{recipe.title}</Link>
+            </h2>
+            <p className={styles.description}>{recipe.description}</p>
+            <p>
+              <b>Category: </b> {recipe.categories}
+            </p>
+          </div>
+        ))}
+      </div>
       <Footer />
     </div>
   );
