@@ -1,9 +1,9 @@
 export interface Recipe {
-  title: string;
-  description: string;
-  ingredients: string;
-  instructions: string;
-  categories: string;
+  title: string | undefined;
+  description: string | undefined;
+  ingredients: string | undefined;
+  instructions: string | undefined;
+  categories: string | undefined;
 }
 
 export interface RecipeID {
@@ -30,6 +30,6 @@ export interface ModalState {
 }
 
 export interface Props {
-  data?: any;
-  id?: any;
+  data: RecipeID;
+  id?: string;
 }

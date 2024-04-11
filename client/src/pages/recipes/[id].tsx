@@ -9,33 +9,29 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   context
 ) => {
   const { id } = context.query;
-  const res = await fetch(`http://localhost:4000/api/recipes/${id}`);
+  const recipeId = Array.isArray(id) ? id[0] : id;
+  const res = await fetch(`http://localhost:4000/api/recipes/${recipeId}`);
   const data = await res.json();
 
-  const myProps: Props = { data, id };
+  const myProps: Props = { data, id: recipeId };
   return { props: myProps };
 };
 
 export default function GetRecipeById({
   data,
-  id,
+  id = "",
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const deleteRecipe = async (id: number) => {
     try {
       await fetch(`http://localhost:4000/api/recipes/${id}`, {
         method: "DELETE",
       });
-
-      //Update state
-      //const updatedRecipes = dataRecipes.filter(
-      //(myRecipe) => myRecipe.id !== id
-      //);
-
-      //setDataRecipes(updatedRecipes);
     } catch (error) {
       console.error("Error deleting recipe:", error);
     }
   };
+
+  console.log(data);
 
   return (
     <div>

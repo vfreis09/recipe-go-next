@@ -10,10 +10,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   context
 ) => {
   const { id } = context.query;
-  const res = await fetch(`http://localhost:4000/api/recipes/${id}`);
+  const recipeId = Array.isArray(id) ? id[0] : id;
+
+  const res = await fetch(`http://localhost:4000/api/recipes/${recipeId}`);
   const data = await res.json();
 
-  const myProps: Props = { data, id };
+  const myProps: Props = { data, id: recipeId };
   return { props: myProps };
 };
 
@@ -22,11 +24,11 @@ export default function EditForm({
   id,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [updatedRecipe, setUpdatedRecipe] = useState<Recipe>({
-    title: data.title,
-    description: data.description,
-    ingredients: data.ingredients,
-    instructions: data.instructions,
-    categories: data.categories,
+    title: data?.title,
+    description: data?.description,
+    ingredients: data?.ingredients,
+    instructions: data?.instructions,
+    categories: data?.categories,
   });
 
   const updateRecipe = (
